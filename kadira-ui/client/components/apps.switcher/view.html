@@ -1,0 +1,21 @@
+<template name="apps.switcher">
+  <ul class="nav navbar-nav navbar-left">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        {{#if state$currentAppName}}
+          <span class="{{#unless state$isCurrentAppOwner}}glyphicon glyphicon-user{{/unless}}"></span>{{state$currentAppName}}
+        {{else}}
+          {{i18n "apps.my_apps"}}
+        {{/if}}
+
+        <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="/create-app" class="create-app"><span class="glyphicon glyphicon-plus"></span>{{i18n "apps.create_new"}}</a></li>
+        {{#each state$apps}}
+          <li><a href="" class="switch-app-link"><span class="{{#unless state$isOwner owner}}glyphicon glyphicon-user{{/unless}}"></span>{{name}}</a></li>
+        {{/each}}
+      </ul>
+    </li>
+  </ul>
+</template>

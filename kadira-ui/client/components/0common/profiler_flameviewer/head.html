@@ -1,0 +1,14 @@
+<head>
+  <script type="text/html" id='flamebar-node'>
+    <rect
+      data-id="<%= id %>" class="func-<%= callUID %>" data-calluid="<%= callUID %>"
+      x="<%= _x %>" y="<%= _depth * 20 %>"
+      width="<%= _width %>" height="20"
+      fill="<%= _color %>" stroke="#fff" stroke-width="0.4"/>
+
+    <text data-id="<%= id %>" class="text-<%= callUID %>" data-calluid="<%= callUID %>" x="<%= _x + 2 %>"
+      y="<%= ( _depth * 20 ) + 13 %>"
+      font-family="monospace" font-size="12" fill="#555"><%= _displayName %>
+    </text>
+  </script>
+</head>

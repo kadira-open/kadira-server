@@ -1,0 +1,13 @@
+<template name="account.billing.status">
+  {{#if state$isCloseToHitUsageLimit}}
+    <div id="billing-warning">
+      {{#if state$isOwner}}
+        <p>Looks like your app is going to exceed monthly <a href="/account/billing">usage limits</a>.
+        Please <a href="#" class="account-update">upgrade</a> your plan or <a href="#" class="talk-to-us">talk</a> to us.</p>
+      {{else}}
+        <p>Looks like this app is going to exceed monthly <a href="/account/billing">usage limits</a>.
+        Contact app's owner</p>
+      {{/if}}
+    </div>
+  {{/if}}
+</template>

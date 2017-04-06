@@ -1,0 +1,375 @@
+#kadira-debug {
+  margin-top: 10px;
+
+  #debug-entry {
+    height: 400px;
+    text-align: center;
+    padding-top: 100px;
+
+    img.kd-logo {
+      width: 300px;
+      margin-bottom: 30px;
+    }
+
+    #debug-app-url {
+      width: 400px;
+      height: 42px;
+      border-radius: 2px !important;
+      border: 1px solid #ddd !important;
+      font-size: 15px;
+    }
+
+    .btn-connect {
+      height: 40px;
+      width: 100px;
+    }
+
+    .status-msg {
+      width: 450px;
+      margin: 30px auto auto;
+      font-size: 13px;
+      font-weight: 600;
+      color: #FF4D4D;
+    }
+
+    .debug-url {
+      padding: 5px 17px 0;
+    }
+  }
+
+  #debug-auth-key {
+    margin: 0;
+    border: 1px solid #ccc !important;
+  }
+
+  .btn-connect-with-auth-key {
+    background-color: #4C4C4C;
+    color: white;
+    outline: 0;
+  }
+
+  .debug-url {
+    padding: 10px 17px 0;
+    color: #FF4D4D;
+    font-weight: 600;
+  }
+  
+  #kd-header {
+    margin-top: 20px;
+    margin-bottom: 10px !important;
+  }
+
+  #debug-app-url {
+    width: 400px;
+    border-radius: 2px !important;
+    border: 1px solid #ddd !important;
+  }
+
+  .btn-connect {
+    border-radius: 2px;
+    background-color: #4C4C4C;
+    color: white;
+    outline: 0;
+    padding: 3px 20px;
+    border: 1px solid #313131;
+  }
+
+  .btn-connect:hover {
+    opacity: 0.8;
+  }
+
+  a.btn-save {
+    color: #000;
+  }
+
+  .saving {
+    -webkit-animation: rotation 2s infinite linear;
+  }
+
+  .a-save {
+    position: absolute;
+    z-index: -9999;
+  }
+
+  .btn-clear {
+    border-radius: 2px;
+    background-color: #FFFFFF;
+    outline: 0;
+    padding: 3px 20px;
+  }
+
+  .event-stream {
+    overflow-y: auto;
+  }
+
+  .event-item {
+    cursor: pointer;
+    padding: 5px 0;
+    border-bottom: 1px solid #F2F2F2;
+  }
+
+  .event-item em{
+    font-weight: 600;
+    color: #282828;
+    font-style: normal;
+  }
+
+  .event-item-info {
+    cursor: pointer;
+    padding: 5px 0;
+    border-bottom: 1px solid #F2F2F2;
+  }
+
+  .event-item-info em{
+    font-weight: 600;
+    color: #282828;
+    font-style: normal;
+  }
+
+  .selected-item {
+    background-color: #DDF4FF;
+    border-bottom: 1px solid #fff;
+  }
+
+  .event-item .color-dot {
+    width: 10px;
+    background-color: red;
+  }
+
+  h3 {
+    margin: 0 0 10px 0;
+  }
+
+  h4 {
+    margin-bottom: 12px;
+  }
+
+  h4.pf-analyser-title {
+    float: left;
+  }
+
+  h4.modal-title {
+    margin-bottom: 0 !important;
+  }
+
+  h5 {
+    font-weight: bold;
+  }
+
+  .support-link, .support-link-top {
+    font-size: 15px;
+    font-weight: 600;
+    color: #4774DC;
+    border-bottom: 2px solid #ED86E4;
+    margin-left: 8px;
+  }
+
+  .support-link-top {
+    border: none !important;
+    margin-top: -16px;
+  }
+
+  .support-link:hover, .support-link-top:hover  {
+    opacity: 0.6;
+  }
+
+  .support-link:hover,
+  .support-link-top:hover,
+  .support-link:active,
+  .support-link-top:active,
+  .support-link:focus,
+  .support-link-top:focus,
+  .support-link:visited,
+  .support-link-top:visited, {
+    text-decoration: none;
+    outline: 0;
+  }
+
+  #cpu-profiler {
+    margin: auto 15px;
+  }
+
+  .dropzone {
+    border: 2px dashed #14ABF7;
+    background-color: #FAFEFF;
+    padding: 164px;
+    height: 400px;
+    cursor: pointer;
+    margin: 20px 0 0 0;
+  }
+
+  .dragover {
+    opacity: 0.5;
+    border: 2px solid #00AAFF;
+  }
+
+  .dragenter {
+    opacity: 0.5;
+    border: 2px solid #00AAFF;
+  }
+
+  .dropzone p {
+    color: #676767;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 400;
+  }
+
+  form.frm-cpu-profiler {
+    position: absolute;
+    z-index: -999;
+    display: none;
+  }
+
+  .btn-enter-full-screen {
+    span {
+      margin-top: 4px;
+    }
+  }
+
+  .btn-exit-full-screen {
+    display: none;
+    margin-right: 0;
+    margin-top: 10px;
+
+    span {
+      padding-top: 4px;
+    }
+  }
+
+  a.help-link {
+    background-color: #709838;
+    border-color: #FFFFFF;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: normal;
+    text-decoration: none;
+    padding: 2px 10px;
+    margin: 0;
+  }
+
+  .event-trace {
+    background-color: #fff;
+    overflow: scroll;
+  }
+
+  div.raw-data {
+    border: 1px solid #dddddd;
+    padding: 20px;
+  }
+
+  p.toggle-mode {
+    cursor: pointer;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 15px;
+    color: #8076D7;
+  }
+
+  button.toggle-activities {
+    background-color: #A2AE66;
+    color: #fff;
+    padding: 2px 10px;
+    margin: 2px;
+    border: none;
+  }
+
+  button.toggle-timeline {
+    background-color: #A2AE66;
+    color: #fff;
+    padding: 2px 10px;
+    margin: 15px;
+    border: none;
+  }
+
+  .kd-page {
+    hr {
+      margin-top: 10px;
+    }
+  }
+
+  .kd-navs {
+    margin: 0;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #E5F2FF;
+  }
+
+  .scroll {
+    overflow-y: scroll !important;
+    overflow-y: hidden;
+  }
+
+  p.debug-auth-key-help {
+    margin-left: 5px;
+
+    a {
+      font-size: 11px;
+    }
+  }
+
+  input#file-load-session {
+    position: absolute;
+    z-index: -9999;
+  }
+}
+
+#activity-timeline {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+#client-activities .btn {
+  margin: 0 0 0 5px;
+  outline: 0;
+}
+
+#client-activities .btn:hover {
+  opacity: 0.6;
+}
+
+.client-activity {
+  border: 1px solid #dddddd;
+}
+
+#back-to-live-activities {
+  background-color: #CCFBCE;
+  border: 1px solid #2AA12D;
+  outline: 0;
+  margin-right: 6px;
+}
+
+.btn-live, .btn-live:hover {
+  margin-right: 6px;
+  padding: 2px 15px;
+  background-color: red;
+  color: white;
+  outline: 0;
+  font-weight: normal;
+  width: 70px;
+}
+
+.btn-offline, .btn-offline:hover {
+  margin-right: 6px;
+  padding: 2px 15px;
+  background-color: green;
+  color: white;
+  outline: 0;
+  font-weight: normal;  
+}
+
+#toggle-activity-sort {
+  background-color: rgb(242, 254, 255);
+  border: 1px solid rgb(96, 212, 223);
+  outline: 0;
+  margin: 5px 5px auto auto;
+}
+
+div#activity-details {
+  overflow-y: scroll;
+}
+
+.nav > li.timeline.active > a {
+  background-color: #C85464 !important;
+  border: 1px solid #C85464 !important;
+}

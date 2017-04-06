@@ -1,0 +1,12 @@
+<template name="timechartHeader">
+  <h4>
+    {{state$title}} 
+    {{#if state$helperId}}
+      {{>showHelp state$helperId}}
+    {{/if}}
+  </h4>
+  
+  {{#if state$isDataEmpty}}
+    <h3 class="time-no-data chart-no-data"><span class="glyphicon glyphicon-exclamation-sign"></span>No Data Found</h3>
+  {{/if}}
+</template>

@@ -1,0 +1,47 @@
+<template name="traceExplorer.clientError">
+  {{#with state$trace}}
+  <div class="client-trace-occurred">
+    <strong> Occurred on </strong>{{state$prettifyDate startTime}}
+  </div>
+  <div class="client-error-infobox">
+    <div class="client-error-title">
+      {{name}}
+    </div>
+    {{#if state$arrayify info}}
+      <ul class="browser-info">
+        {{#each state$arrayify info}}
+          <li class="{{key}}">
+            <div class="col-xs-11">
+              <b>{{label key}}</b>:
+              {{{value}}}
+            {{#if state$isIp key}}
+              <span class="details">
+                {{#if state$ipLocation}}
+                  <!-- (<a href="#" class="map-link" data-uri="{{state$ipMapLink}}" target="_blank">{{state$ipLocation}}</a>) -->
+                  (<a href="#" class="map-link" target="_blank">{{state$ipLocation}}</a>)
+                {{/if}}
+              </span>
+            {{/if}}
+            </div>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+  </div>
+  <div class="clearfix"></div>
+  <ul class="nav nav-tabs error-more-info" role="tablist" id="em-client-error-tabs">
+    {{#if state$canDisplayEventsTab}}
+      <li class="active"><a href="#client-error-events" role="tab" data-toggle="tab">Events</a></li>
+    {{/if}}
+      <li class="{{#unless state$canDisplayEventsTab}}active{{/unless}}"><a href="#client-error-stack" role="tab" data-toggle="tab">Stacktrace</a></li>
+  </ul>
+  <div class="tab-content client-trace-exp">
+    {{#if state$canDisplayEventsTab}}
+      <div class="tab-pane active events" id="client-error-events">{{> methodExpClientEvents}}</div>
+    {{/if}}
+    <div class="tab-pane stack {{#unless state$canDisplayEventsTab}}active{{/unless}}" id="client-error-stack" >
+      {{> methodExpStackTrace}}
+    </div>
+  </div>
+  {{/with}}
+</template>

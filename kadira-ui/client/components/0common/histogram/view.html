@@ -1,0 +1,13 @@
+<template name="histogram">
+  {{#with state$summary}}
+    <div class="histogram-summary">
+      <b>Summary:</b>
+        <span class="key">median:</span> <span class="value">{{median}}ms</span>
+        <span class="key">p90:</span> <span class="value">{{p90}}ms</span>
+        <span class="key">p95:</span> <span class="value">{{p95}}ms</span>
+        <span class="key">p99:</span> <span class="value">{{p99}}ms</span>
+    </div>
+  {{/with}}
+  
+  <div class="histogram-chart"></div>
+</template>

@@ -1,0 +1,26 @@
+<template name="summaryChart">
+  <div class="summery-wrap">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 summery-inner {{state$itemClass}}">
+        {{#render component="loading" isLoadingFn=stateFn$isLoading}}
+          {{#if state$isDataEmpty}}
+            <h3 class="chart-no-data"><span class="glyphicon glyphicon-exclamation-sign"></span>{{i18n "common.no_data"}}</h3>
+          {{else}}
+            {{#each state$data}}
+              <div class="item pull-left">
+                <div class="caption">{{caption}}</div>
+                <div class="value">{{value}}</div>
+              </div>
+            {{/each}}
+          {{/if}}
+        {{/render}}
+      </div>
+      {{#if state$helperId}}
+        {{>showHelp state$helperId}}
+      {{/if}}
+    </div>
+  </div>
+</template>
+
+
+

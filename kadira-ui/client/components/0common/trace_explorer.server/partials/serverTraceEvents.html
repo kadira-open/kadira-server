@@ -1,0 +1,164 @@
+<template name="method_exp_server_start">
+  <li class="method-exp start">
+    <div class="circle circle-start"></div>
+      <div class="info">
+        Started at <b> {{state$prettifyDate this.[3]}}</b>
+        <a href="#" class="view-details">Show More</a>
+        <div class="details">
+          <ul>
+          {{#each state$arrayify this.[2]}}
+              <li>{{key}} : {{value}}</li>
+          {{/each}}
+          </ul>
+        </div>
+        <div class="clearfix"> </div>
+      </div>
+  </li>
+</template>
+
+<template name='method_exp_server_wait'>
+  <li class="method-exp wait">
+    <div class="circle circle-wait"></div>
+    <div class="info">
+      wait time <span class="time-spent">{{this.[1]}}ms</span> on
+      {{#with state$waitCounts this}}
+        {{#if method}}
+          <b>{{method}}</b> method(s),
+        {{/if}}
+        {{#if sub}}
+          <b>{{sub }}</b> subscription(s)
+        {{/if}}
+      {{/with}}
+      <a href="#" class="view-details">Show More</a>
+      <div class="details">
+        <ul>
+          {{#each state$arrayify this.[2].waitOn}}
+            {{#with state$waitInfo this}}
+            <li>wait on {{waitType}} :
+              {{#if link}}
+                <!-- <a href="#" data-uri="{{state$waitedItemLink this}}" class="select-wait wait-link">{{name}}</a> -->
+                <a href="#" class="select-wait wait-link">{{name}}</a>
+                {{#if waitTime}}
+                  - {{waitTime}}
+                {{/if}}
+              {{else}}
+                {{name}}
+              {{/if}}
+            </li>
+            {{/with}}
+          {{/each}}
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </li>
+</template>
+
+<template name='method_exp_server_db'>
+  <li class="method-exp db">
+    <div class="circle circle-db"></div>
+    <div class="info">
+      <b>{{this.[2].func}}</b> on <b>{{this.[2].coll}}</b> <span class="time-spent">{{this.[1]}}ms </span>
+      {{#if this.[2].oplog}}
+        <span class="label label-success">Using Oplog</span>
+      {{/if}}
+      {{#if state$isOplogDisabled this.[2]}}
+        <span class="label label-default">Not Using Oplog</span>
+      {{/if}}
+      <a href="#" class="view-details">Show More</a>
+      {{#if state$isOplogDisabled this.[2]}}
+      <div class="highlight">
+        <ul>
+          <li><i class="glyphicon glyphicon-exclamation-sign"> </i>{{this.[2].noOplogReason}}</li>
+          <li><i class="glyphicon"></i><strong>{{this.[2].noOplogSolution}}</strong></li>
+        </ul>
+      </div>
+      {{/if}}
+      <div class="details">
+        <ul>
+          {{#each state$arrayify this.[2]}}
+            {{#if state$oplogDisplayValue this}}
+            <li>{{key}} : {{state$oplogDisplayValue this}}</li>
+            {{/if}}
+          {{/each}}
+        </ul>
+      </div>
+    <div class="clearfix"> </div>
+    </div>
+  </li>
+</template>
+
+<template name='method_exp_server_http'>
+  <li class="method-exp db">
+    <div class="circle circle-db"></div>
+      <div class="info">
+        <span>HTTP <b>{{this.[2].method}}</b> <span class='time-spent'>{{this.[1]}}ms</span></span>
+        <a href="#" class="view-details">Show More</a>
+        <div class="details">
+          <ul>
+            {{#each state$arrayify this.[2]}}
+              <li>{{key}} : {{value}}</li>
+            {{/each}}
+          </ul>
+        </div>
+        <div class="clearfix"> </div>
+      </div>
+  </li>
+</template>
+
+<template name='method_exp_server_email'>
+  <li class="method-exp email">
+    <div class="circle circle-email"></div>
+    <div class="info">
+      <span>email <span class='time-spent'>{{this.[1]}}ms</span></span>
+      <div class="clearfix"> </div>
+    </div>
+  </li>
+</template>
+
+<template name='method_exp_server_async'>
+  <li class="method-exp async">
+    <div class="circle circle-async"></div>
+    <div class="info">
+    <span>async <span class='time-spent'>{{this.[1]}}ms</span></span>
+      <div class="clearfix"> </div>
+    </div>
+  </li>
+</template>
+
+<template name='method_exp_server_compute'>
+  <li class="method-exp compute">
+    <div class="circle circle-compute"></div>
+      <div class="info">
+        <span>computation <span class='time-spent'>{{this.[1]}}ms</span></span>
+          <div class="clearfix"> </div>
+      </div>
+  </li>
+</template>
+
+<template name='method_exp_server_complete'>
+  <li class="method-exp complete">
+    <div class="circle circle-complete"></div>
+      <div class="info">
+        <b>Completed</b> at <b style='color: #707070;'>{{state$prettifyDate this.[3].endTime}}</b> (<b>Response Time: <i>{{this.[3].totalValue}}ms</i></b>)
+        <div class="clearfix"> </div>
+      </div>
+  </li>
+</template>
+
+<template name='method_exp_server_error'>
+  <li class="method-exp error">
+    <div class="circle circle-error"></div>
+      <div class="info">
+        Errored at <b>{{endTime}}</b>
+        <a href="#" class="view-details">Show Less</a>
+        <div class="details">
+          message: {{this.[2].error.message}}
+          <br />
+          stack:
+          <pre>{{this.[2].error.stack}}</pre>
+        </div>
+        <div class="clearfix"> </div>
+      </div>
+  </li>
+</template>

@@ -1,0 +1,13 @@
+<template name="app.share.invite">
+  {{#if state$error}}
+    <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div id="invite-error" class="alert alert-danger" role="alert">
+          {{state$error}}
+        </div>
+      </div>
+    </div>
+  {{else}}
+    {{i18n "share.processing_invitation"}}
+  {{/if}}
+</template>

@@ -1,0 +1,64 @@
+<template name="debug.clientActivities">
+  <div class="client-activity">
+    <div>
+      <button id="toggle-activity-sort" class="pull-right btn btn-xs btn-default">Sort by {{state$toggledSort}}</button>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row scroll" id="activity-details">
+      <div class="col-md-6">
+        {{>render
+          component="debug.activityChart"
+          title="View Creation" 
+          helperId="kd-activity-view-creation" 
+          dataFn=stateFn$viewCreatedActivities
+          summaryFn=stateFn$activitySummary
+        }}
+        {{>render
+          component="debug.activityChart"
+          title="DOM Creation"
+          helperId="kd-activity-dom-creation" 
+          dataFn=stateFn$domCreateActivities
+          summaryFn=stateFn$activitySummary
+        }}
+        {{>render
+          component="debug.activityChart"
+          title="Helpers"
+          helperId="kd-activity-helpers" 
+          dataFn=stateFn$helpersActivities
+          summaryFn=stateFn$activitySummary
+        }}
+        {{>render
+          component="debug.activityChart"
+          title="Autoruns"
+          helperId="kd-activity-autoruns" 
+          dataFn=stateFn$autorunActivities
+          summaryFn=stateFn$activitySummary
+        }}
+      </div>
+      <div class="col-md-6">
+        {{>render
+          component="debug.activityChart"
+          title="View Destruction"
+          helperId="kd-activity-view-destruction" 
+          dataFn=stateFn$viewDestroyedActivities
+          summaryFn=stateFn$activitySummary
+        }}
+        {{>render
+          component="debug.activityChart"
+          title="DOM Destruction"
+          helperId="kd-activity-dom-destruction" 
+          dataFn=stateFn$domDestroyActivities
+          summaryFn=stateFn$activitySummary
+        }}
+        {{>render
+          component="debug.activityChart"
+          title="View Renders"
+          helperId="kd-activity-renders" 
+          dataFn=stateFn$viewRenderedActivities
+          summaryFn=stateFn$activitySummary
+        }}
+      </div>
+    </div>
+  </div>
+</template>

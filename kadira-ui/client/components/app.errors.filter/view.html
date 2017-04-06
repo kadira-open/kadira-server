@@ -1,0 +1,23 @@
+<template name="app.errors.filter">
+  {{>
+    render component="dropdown"
+    dataFn=stateFn$errorTypes
+    onSelect=action$notifyTraceTypeChange
+    selectedFn=stateFn$filteredTraceType
+  }}
+
+  {{>
+    render component="dropdown"
+    dataFn=stateFn$errorStatuses
+    onSelect=action$notifyStatusChange
+    selectedFn=stateFn$filteredStatusType
+  }}
+
+  <form class="form-inline" id="em-error-filter-form">
+    <input type="text" id="em-filter-search" placeholder="Filter" autocomplete="off" class="form-control" value={{state$currentSearchQuery}}>
+    <a href="#" id="em-error-filter-form-clr" class="{{#if state$isSearchEmpty}}hidden{{/if}}">
+      <span class="glyphicon glyphicon-remove"></span>
+    </a>
+    <button class="btn btn-default btn-sm" type="submit">Filter</button>
+  </form>
+</template>

@@ -1,0 +1,39 @@
+<template name="app.dashboard.methods.timecharts">
+  <div class="breakdown-chart">
+    {{>
+      render component="timeseries.stack.trace"
+      metrics="wait,db,http,email,compute,async"
+      labels="wait,db,http,email,compute,async"
+      metricDataKey="timeseries.responseTimeBreakdown"
+      traceListDataKey="traces.methodsList"
+      histogramDataKey="histogram.method"
+      title="Response Time Breakdown"
+      helperId="timeseries-responseTimeBreakdown"
+      extraArgsFn=stateFn$timeseriesArgs
+      traceType="method"
+    }}
+  </div>
+  <div class="breakdown-chart">
+    {{>
+      render component="timeseries.single"
+      metricDataKey="timeseries.throughput"
+      metric="count"
+      label="Throughput"
+      title="Throughput"
+      helperId="timeseries-throughput"
+      color="#CA5C00"
+      extraArgsFn=stateFn$timeseriesArgs
+    }}
+  </div>
+  <div class="breakdown-chart">
+    {{>
+      render component="timeseries.multi"
+      metrics="total,count"
+      labels="Response Time,Throughput"
+      colors="#CA5C00,#7B4CC2"
+      metricDataKey="timeseries.resTimeThroughput"
+      title="Response Time and Throughput"
+      extraArgsFn=stateFn$timeseriesArgs
+    }}
+  </div>
+</template>

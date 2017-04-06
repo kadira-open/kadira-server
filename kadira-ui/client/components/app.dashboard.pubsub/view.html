@@ -1,0 +1,28 @@
+<template name="app.dashboard.pubsub">
+  <div>
+    {{>
+      render component="summaryChart.source"
+      summaryDataKeys="summary.pubsub,summary.activeSubs"
+      metrics="resTime,subs,activeSubs"
+      labels="Response Time, Sub Rate,Active Subs(Average)"
+      formatters=state$summaryFormatters
+      helperId="summary-dashboardPubSub"
+    }}
+  </div>
+  <div class="row">
+    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+      <h4>Publications Breakdown {{>showHelp 'pub-breakdown'}}</h4>
+      {{>
+        render component="hbar.breakdown"
+        metricDataKey="breakdown.pubsub"
+        sortOptionsFn=stateFn$breakDownSortOptions
+        commonValueLabelFn=stateFn$breakdownCommonValueLabel
+      }}
+    </div>
+
+    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+      {{> render component="app.dashboard.pubsub.timecharts"}}
+    </div>
+  </div>
+
+</template>

@@ -1,0 +1,24 @@
+<template name="timeseriesHostsHeader">
+  <h4>
+    {{state$title}} 
+    {{#if state$helperId}}
+      {{>showHelp state$helperId}}
+    {{/if}}
+    <span class="pull-right">
+      {{#if state$isFullScreen}}
+        <button class="btn btn-default chart-exit-full-screen"><i class="fa fa-times"></i></button>
+      {{else}}
+        {{#if state$isGroupByHost}}
+          <button class="btn-sm btn btn-default chart-go-full-screen"><span class="glyphicon glyphicon-fullscreen"></span></button>
+        {{/if}}
+        <button class="btn-sm btn btn-default chart-host-switch  {{#if state$isGroupByHost}}active{{/if}}">{{i18n "common.show_hosts"}}
+        </button>
+      {{/if}}
+    </span>
+  </h4>
+  {{#if state$isDataEmpty}}
+    <h3 class="time-no-data chart-no-data"><span class="glyphicon glyphicon-exclamation-sign"></span>No Data Found</h3>
+  {{/if}}
+</template>
+
+

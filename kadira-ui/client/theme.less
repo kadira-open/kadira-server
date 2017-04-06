@@ -1,0 +1,139 @@
+@import "0config/bootstrap/custom.bootstrap.import.less";
+@import "variables.import.less";
+
+body, div, a, p, li, span, h1, h2, h3, h4, h5 {
+  font-family: @font-family-sans-serif;
+}
+
+li .glyphicon {
+  padding-right: 8px;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+h2, h3, h4 {
+  font-weight: 600;
+}
+
+.btn-sm, .nav > li.pills-sm > a{
+  padding: 3px 10px 3px 10px;
+  // font-weight: 600;
+}
+
+.btn-sm.no-bg{
+  background-color: #FCFAFF;
+  border: 1px solid #D7CEFA;
+}
+
+.nav > li.pills-sm > a{
+  border-radius: 3px;
+  line-height: 21px;
+  background-color: #FCFAFF;
+  border: 1px solid @light-violet;
+  font-weight: 600;
+  color: #61605D;
+}
+
+.nav > li.pills-sm.active > a{
+  background-color: @pills-default;
+  border: 1px solid darken(@pills-default, 10%);
+  color: #fff;
+}
+
+.nav > li.active.errors > a{
+  background-color: @errors-bg;
+  border: 1px solid darken(@errors-bg, 10%);
+}
+
+.nav > li.active.dashboard > a{
+  border: 1px solid darken(@dashboard-bg, 10%);
+  background-color: @dashboard-bg;
+}
+
+.nav > li.active.tools > a{
+  border: 1px solid darken(@tools-bg, 10%);
+  background-color: @tools-bg;
+}
+
+.nav > li.active.insights > a{
+  border: 1px solid darken(@insights-bg, 10%);
+  background-color: @insights-bg;
+}
+
+.nav > li.active.overview > a{
+  border: 1px solid darken(@overview-bg, 10%);
+  background-color: @overview-bg;
+}
+
+.nav > li.active.summary > a{
+  border: 1px solid darken(@summary-bg, 10%);
+  background-color: @summary-bg;
+}
+
+.nav > li.active.pubsub > a{
+  border: 1px solid darken(@pubsub-bg, 10%);
+  background-color: @pubsub-bg;
+}
+
+.nav > li.active.methods > a{
+  border: 1px solid darken(@methods-bg, 10%);
+  background-color: @methods-bg;
+}
+
+.nav > li.active.cpu-profiler > a{
+  border: 1px solid darken(@cpu-profiler-bg, 10%);
+  background-color: @cpu-profiler-bg;
+}
+
+.nav > li.active.predictions > a{
+  border: 1px solid darken(@predictions-bg, 10%);
+  background-color: @predictions-bg;
+}
+
+.nav > li.active.trends > a{
+  border: 1px solid darken(@trends-bg, 10%);
+  background-color: @trends-bg;
+}
+
+.btn.btn-sm{
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.input-sm {
+  height: 29px;
+}
+
+.simplebox {
+  outline: none;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.btn-default {
+  border: 1px solid #D7CEFA;
+}
+
+.form-control{
+  border: 1px solid #D7CEFA;
+}
+
+.modal-body {
+  min-height: 100px;
+}
+
+//to prevent modal from moving when a scroll coming
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+#login-buttons-reset-password-modal .modal-footer{
+  padding: 15px;
+}
+
+.radio label{
+  font-size: 14px;
+}

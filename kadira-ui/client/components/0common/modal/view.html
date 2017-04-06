@@ -1,0 +1,15 @@
+<template name="modal">
+  <div class="modal" id="{{state$modalId}}" tabindex="-1" role="dialog" aria-labelledby="{{state$modalId}}Label" aria-hidden="true">
+    <div class="modal-dialog {{state$modalClass}}">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="{{state$modalId}}Label">{{state$title}}</h4>
+        </div>
+        <div class="modal-body">
+          {{> flowContentBlock}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

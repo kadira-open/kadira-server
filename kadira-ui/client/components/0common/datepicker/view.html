@@ -1,0 +1,15 @@
+<template name="datepicker">
+  <div class="input-group date-select-popover" ></div>
+
+  <div class="time-slider {{#unless state$canShowTimeSlider}}hidden{{/unless}}">
+    <div>
+      <span class="lbl">Time</span><span class="cur-hour">{{state$stringifyValue "dateHour"}}</span>:<span class="cur-min"> {{state$stringifyValue "dateMinutes"}} </span>
+    </div>
+    <div>
+      <span class="lbl">Hour</span><span class="hour" data-slider-tooltip="hide"></span>
+    </div>
+    <div>
+      <span class="lbl">Minute</span><span class="minute" data-slider-tooltip="hide"></span>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,39 @@
+<template name="error_owner_addEventListener">
+  Inside event <em>"{{owner.event}}"</em> of <em>"{{state$elementName this}}"</em>
+</template>
+
+<template name="error_owner_templateEvent">
+  Inside event <em>"{{owner.event}}"</em> of template <em>"{{owner.template}}"</em>
+</template>
+
+<template name="error_owner_meteorSubscribe">
+  Inside subscription <em>"{{owner.callbackType}}"</em> callback of <em>"{{owner.name}}"</em>
+</template>
+
+<template name="error_owner_meteorCall">
+  Inside method call response of <em>"{{owner.name}}"</em>
+</template >
+
+<template name="error_owner_mongoObserve">
+  Inside <em>"{{owner.callbackType}}"</em> callback, while observing <em>"{{owner.collection}}"</em> collection
+</template >
+
+<template name="error_owner_mongoFetch">
+  Cursor fetch "{{owner.collection}}"
+</template>
+
+<template name="error_owner_mongoForEach">
+  Cursor forEach "{{owner.collection}}"
+</template>
+
+<template name="error_owner_mongoMap">
+  Cursor map "{{owner.collection}}"
+</template>
+
+<template name="error_owner_depsFlush">
+  Inside <em>"{{owner.type}}"</em>
+</template>
+
+<template name="error_owner_default">
+  Inside <em>"{{owner.type}}"</em>
+</template>

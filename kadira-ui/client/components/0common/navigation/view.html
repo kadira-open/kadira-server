@@ -1,0 +1,18 @@
+<template name="navigation">
+  <ul class="nav nav-pills navigation">
+    {{#each state$navs}}
+      <li role="presentation" class="{{#if active}}active{{/if}} pills-sm {{section}}">
+        <a href="{{url}}" target={{target}} >{{label}}</a>
+      </li>
+    {{/each}}
+
+    {{#if state$isNavPosition 'main'}}
+      <li class="separator">&nbsp;</li>
+      <li role="presentation" class="pills-sm tools">
+        <a href="http://debug.kadiraio.com/debug" target="_blank">
+          KADIRA DEBUG
+        </a>
+      </li>
+    {{/if}}
+  </ul>
+</template>

@@ -1,0 +1,9 @@
+<template name="clipboardButton">
+    <button 
+      class="copy-button {{state$cssClasses}}"
+      data-clipboard-text="{{state$text}}" 
+      title="{{state$label}}" 
+      data-toggle="tooltip">
+      <span class="{{state$glyphicon}}"></span>
+    </button>
+</template>

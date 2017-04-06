@@ -1,0 +1,10 @@
+<template name="traceExplorer.shared">
+  <div class="shared-traces">
+    {{>
+      render component="traceExplorer"
+      traceFn=stateFn$trace
+      typeFn=stateFn$type
+      isLoadingFn=stateFn$isTraceLoading
+    }}
+  </div>
+</template>

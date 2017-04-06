@@ -1,0 +1,47 @@
+.activity-chart {
+  padding: 10px;
+}
+
+.activity-chart h4 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.score-bar {
+  border-bottom: 2px solid #FA3B76;
+  width: 0;
+}
+
+.score-bar-background {
+  background-color: #eee;
+}
+
+.activity-items {
+  margin-top: 10px;
+}
+
+.activity-item {
+  font-size: 14px;
+  color: #4F4F4F;
+}
+
+.activity-item em {
+  font-style: normal;
+  font-weight: 600;
+  color: #aaa;
+}
+
+.activity-item .name {
+  width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.activity-item .rest {
+  width: 30%;
+}
+
+.activity-item .link {
+  margin-top: 5px;
+}

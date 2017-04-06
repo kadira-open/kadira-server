@@ -1,0 +1,30 @@
+{
+  "public": {
+    "tender": {
+      "key": "405871e6-4816-4d44-a0f3-860c0e988078"
+    },
+    "intercom": {},
+    "loginState": {
+      "domain": "",
+      "cookieName": "kadira-dev-login-state"
+    }
+  },
+
+  "tender": {
+    "secret": "71825e70-d11d-489b-b273-2afdca024fd6"
+  },
+
+  "stripe": {
+    "kadirahq": {
+      "apiKey": "sk_test_22QITCBPhqEaEKjHXK5BBwO8",
+      "publishableKey": "pk_test_Tc1iVNRP9p8o7zgYWoWjZnm4",
+      "appName": "KadiraHQ",
+      "appLogo": "https://kadira.io/favicon.ico"
+    }
+  },
+
+  "meteorDevelopers": {
+    "clientId": "HcempmSyaawiyb4G4",
+    "secret": "snC3snsmTebC8HHCwwhqhHaAzAFxtFsQRL"
+  }
+}

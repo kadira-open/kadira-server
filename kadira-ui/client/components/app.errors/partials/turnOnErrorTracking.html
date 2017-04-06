@@ -1,0 +1,33 @@
+<template name="turnOnErrorTracking">
+  <h3 class="text-center em-help-title" > {{i18n 'errorManager.error_manager_title'}}</h3>
+  <div class="row error-tracking-help">
+
+    <div id='em-preview-movie' class="col-md-8">
+      <img class="col-md-12" src="//cldup.com/gQo777ALjW.gif"/>
+    </div>
+    <div class="col-md-4">
+      <h4>{{i18n 'errorManager.quick_setup'}}</h4>
+      <ul class="em-enable-steps">
+        <li>1. update kadira smart package</li>
+        <pre>
+meteor update meteorhacks:kadira
+
+// for older meteor releases
+mrt update</pre>
+        <li>2. add zones smart package (optional - <a href='http://support.kadira.io/knowledgebase/articles/421158' target="_blank">see why</a>)</li>
+        <pre>
+meteor add meteorhacks:zones
+
+// for older meteor releases
+mrt add zones</pre>
+        <li>3. connect your app with kadira and open it in the browser</li>
+        <li>4. open browser console and enter following code</li>
+        <pre>
+setTimeout(function(){
+  throw new Error('Hello Error');
+}, 100);</pre>
+        <li>5. wait for a  moment and error will be appeared on this page.</li>
+      </ul>
+    </div>
+  </div>
+</template>

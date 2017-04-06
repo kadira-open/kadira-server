@@ -1,0 +1,16 @@
+<template name="apps.create">
+  <div class="col-md-8 col-sm-10 col-xs-12">
+    <form action="" role="form" id="apps-create">
+      <h2>{{i18n "apps.create_app_form_title"}}</h2>
+      <div class="form-group">
+        <input type="text" class="form-control" id="app-name" placeholder="{{i18n 'apps.app_name'}}"/>
+        <br/>
+        {{> render component="app.setPlan"}}
+      </div>
+      {{#if state$error}}
+        <div class="alert alert-danger">{{state$error}}</div>
+      {{/if}}
+      <button id="create-app-submit" type="submit" class="btn btn-primary btn-sm" data-loading-text="{{i18n 'common.creating'}}">{{i18n "apps.create_app"}}</button>
+    </form>
+  </div>
+</template>

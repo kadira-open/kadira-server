@@ -1,0 +1,4 @@
+-u tdd 
+-R spec
+--recursive 
+-t 10000

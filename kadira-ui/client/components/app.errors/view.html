@@ -1,0 +1,54 @@
+<template name="app.errors">
+
+  {{#if state$isErrorTrackingOn}}
+  <div class="row error-filter">
+    <div class="col-md-12">
+      {{>
+        render component="app.errors.filter"
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 col-xs-5">
+      <div class="hbar-wrap affix-top">
+        <h4>Errors Breakdown</h4>
+        {{#unless state$isFilteredByStatus}}
+          <span class="show-ignored-wrap"><input type="checkbox" name="show-ignored" value="ignored" checked={{state$showIgnored}}> Show Ignored Errors</span>
+        {{/unless}}
+        {{#render component="loading" isLoadingFn=stateFn$isHbarChartLoading}}
+          {{>
+            render component="hbar.errors"
+            sortOptionsFn=stateFn$hbarSortOptions
+            sortedItemFn=stateFn$hbarSortedItem
+            dataFn=stateFn$hbarChartData
+          }}
+        {{/render}}
+      </div>
+    </div>
+    <div class="col-md-7 col-xs-7">
+      <div class="em-chart-wrap">
+        {{>
+          render component="app.errors.trace"
+          metricDataKey="timeseries.errors"
+          traceListDataKey="traces.errorsList"
+          traceSampleDataKey="traces.traceSample"
+          onCurrentErrorStatusChange=action$changeCurrentErrorStatus
+          metric="errorCount"
+          label="Error Count"
+          color="#EE7D7D"
+          extraArgsFn=stateFn$extraArgs
+          isStatusLoadingFn=stateFn$isSubsLoading
+        }}
+      </div>
+    </div>
+  </div>
+  <div>
+
+    {{>
+      render component="traceExplorer.modal"
+    }}
+  </div>
+  {{else}}
+    {{> turnOnErrorTracking}}
+  {{/if}}
+</template>

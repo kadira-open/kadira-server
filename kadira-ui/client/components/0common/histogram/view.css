@@ -1,0 +1,16 @@
+.histogram-summary {
+  background-color: #FFFFF6;
+  padding: 5px 5px;
+  text-align: center;
+  margin: 10px 0;
+  border: 1px solid #F6F8CC;
+}
+
+.histogram-summary .key {
+  margin-left: 5px;
+}
+
+.histogram-summary .value {
+  border-bottom: 1px solid #ACACAC;
+  margin-right: 10px;
+}

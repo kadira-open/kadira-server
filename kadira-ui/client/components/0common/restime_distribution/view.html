@@ -1,0 +1,50 @@
+<template name="restimeDistribution">
+  {{#if state$isResTimeDistributionAllowed}}
+    <div class="distribution-info">
+      {{#if state$selectedTime}}
+        <div>
+          <div class="pull-left"><b>Response Time Distribution</b> at {{state$prettifiedTraceDate}}</div>
+          <div class="pull-right learn-more"><a href="https://kadira.io/academy/meteor-performance-101/content/debugging-meteor-response-time-bottlenecks" target="_blank">LEARN MORE</a></div>
+          <div class="clearfix"></div>
+        </div>
+        {{#render component="loading" isLoadingFn=stateFn$isHistogramLoading}}
+          {{>
+            render component="histogram"
+            height=150
+            histogramFn=stateFn$histogramData
+            onBinClick=action$loadTracesForBin
+          }}
+        {{/render}}
+      {{else}}
+        <h4 style="color: #7E7E7E;" class="empty"><small><span class="glyphicon glyphicon-exclamation-sign"></span> Click on a point in the chart to view Response Time distribution.</small></h4>
+      {{/if}}
+    </div>
+  {{else}}
+    {{>render partial="resTimeDistributionDenied"}}
+  {{/if}}
+
+  <div class="traces-box">
+    {{#render component="loading" isLoadingFn=stateFn$isTracesLoading}}
+      {{#if state$selectedTime}}
+        {{#if state$selectedTraces}}
+        <ul class="costly-call-list">
+          <div><b>Traces at</b> {{state$prettifiedTraceDate}}</div>
+          {{#each state$selectedTraces}}
+            <li class="pull-left">
+              <a href="#" class="btn btn-info trace-exp-btn btn-sm">
+                {{totalValue}}ms
+              </a>
+            </li>
+          {{/each}}
+
+        </ul>
+        {{else}}
+          <h4 style="color: #7E7E7E;" class="empty"><small><span class="glyphicon glyphicon-exclamation-sign"></span> No Traces Found</small></h4>
+        {{/if}}
+        <div class="clearfix"></div>
+      {{else}}
+        <h4 style="color: #7E7E7E;" class="empty"><small><span class="glyphicon glyphicon-exclamation-sign"></span> Click on a point in the chart to inspect traced errors.</small></h4>
+      {{/if}}
+      {{/render}}
+  </div>
+</template>

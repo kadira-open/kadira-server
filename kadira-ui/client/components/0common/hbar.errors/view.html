@@ -1,0 +1,12 @@
+<template name="hbar.errors">
+  {{>
+    render component="hbar"
+    dataFn=stateFn$data
+    sortOptionsFn=stateFn$sortOptions
+    selectedItemFn=stateFn$selectedItem
+    sortedItemFn=stateFn$sortedItem
+    onSort=action$changeSortOrder
+    onSelect=action$changeSelection
+    itemTemplate="hbar.errorItemTemplate"
+  }}
+</template>

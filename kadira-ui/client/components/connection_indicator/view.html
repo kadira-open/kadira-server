@@ -1,0 +1,7 @@
+<template name="connectionIndicator">
+  {{#if state$isDisconnected}}
+    <div id="connection-indicator">
+      Offline. Retrying in {{state$retryTime}} seconds. <a class="btn btn-sm btn-default retry" href="#">Retry Now</a>
+    </div>
+  {{/if}}
+</template>

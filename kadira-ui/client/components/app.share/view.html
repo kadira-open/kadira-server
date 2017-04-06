@@ -1,0 +1,14 @@
+<template name="app.share">
+  <li>
+    <a href="#" id="app-share"> <span class="glyphicon glyphicon-user"></span>{{i18n "common.share"}} </a>
+  </li>
+
+  {{#render component="modal"
+    id="app-share-dialog"
+    titleFn=stateFn$dialogTitle
+    canShowFn=stateFn$canShow
+    onClose=action$onDialogClose
+    }}
+    {{>render component="app.share.dialog"}}
+  {{/render}}
+</template>

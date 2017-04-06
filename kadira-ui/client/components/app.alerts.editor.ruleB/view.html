@@ -1,0 +1,35 @@
+<template name="app.alerts.editor.ruleB">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="">
+        <select id="alrt-frequency" name="alrt-frequency" class="form-control">
+          {{#each state$FREQUENCY}}
+            <option value="{{value}}" data-metric="{{metric}}" selected="{{selected}}">{{key}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+    {{#if state$showDuration}}
+      <div class="col-md-4">
+        <div class="input-group">
+          <input 
+            id="alrt-duration" 
+            name="alrt-duration" 
+            class="form-control" 
+            placeholder="Duration" 
+            value="{{state$alertInfo.duration}}" 
+            type="number" 
+            min="0" max="60" step="1" 
+            pattern="\d+" 
+            required="true" 
+          />
+          <div class="input-group-btn">
+            <button type="button" id="alrt-duration-metric" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown" disabled="disabled">
+              mins
+            </button>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+</template>

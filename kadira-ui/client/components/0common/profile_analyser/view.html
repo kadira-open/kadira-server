@@ -1,0 +1,56 @@
+<template name="profileAnalyser">
+  <div class="clearfix"></div>
+  <div class="row">
+    <div id="pf-breakdown-chart" class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+      {{#render component="loading" isLoadingFn=stateFn$isProfileLoading}}
+        {{>render component="hbar"
+          sortOptionsFn=stateFn$hBarsortOptions
+          dataFn=stateFn$hbarChartData
+          selectedItemFn=stateFn$hbarSelectedItem
+          sortedItemFn=stateFn$hbarSortedItem
+          onSelect=action$onHarbarSelect
+          onSort=action$onHarbarSortChanged
+          heightFn=stateFn$hbarHeight
+        }}
+      {{/render}}
+    </div>
+    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+      {{#render component="loading" isLoadingFn=stateFn$isProfileLoading}}
+        {{#if state$isHbarItemSelected}}
+          {{#if state$showEntrypoints}}
+            <h4>Entrypoints</h4>
+            <div id="pf-cpu-paths">
+              {{#each state$cpuPaths}}
+                <a class="pf-select-path" href="#">{{pValue}}%</a>
+              {{/each}}
+            </div>
+          {{/if}}
+          {{>render component="profiler.flameviewer"
+              heightFn=stateFn$flameviewerHeight
+              cpuProfileFn=stateFn$profile
+              currentPathFn=stateFn$currentPath
+              selectedFunctionsFn=stateFn$selectedFunctions
+              onClick=action$onClick
+              onHover=action$onHover
+              onChartLeave=action$onChartLeave
+          }}
+          {{#with state$functionDetails}}
+            <ul id="pf-function-info">
+              <li>Usage :
+                self=<span class="pf-usage-self">{{selfUsage}}</span>%
+                total=<span class="pf-usage-total">{{totalUsage}}</span>%
+              </li>
+              <li>Function : <span class="pf-func-name">{{functionName}}</span></li>
+              <li>File Name: <span class="pf-file-name">{{fileName}}</span> </li>
+              <li>Line Number: <span class="pf-line-number">{{lineNumber}}</span> </li>
+            </ul>
+          {{/with}}
+        {{else}}
+          {{>render component="pieChart"
+              values=stateFn$pieChartData
+          }}
+        {{/if}}
+        {{/render}}
+    </div>
+  </div>
+</template>

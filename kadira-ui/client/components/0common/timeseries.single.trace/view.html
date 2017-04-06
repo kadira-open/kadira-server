@@ -1,0 +1,27 @@
+<template name="timeseries.single.trace">
+  {{>
+    render component="timeseries.single"
+      metricDataKey=state$metricDataKey
+      metric=state$metric
+      label=state$label
+      title=state$title
+      helperId=state$helperId
+      type=state$chartType
+      color=state$color
+      isHostsChart=state$isHostsChart
+      extraArgsFn=stateFn$extraArgs
+      onChartClick=action$setSelectedTime
+  }}
+
+  {{>
+    render component="restimeDistribution"
+      traceType=state$traceType
+      traceListDataKey=state$traceListDataKey
+      histogramDataKey=state$histogramDataKey
+      selectedTimeFn=stateFn$selectedTime
+      appIdFn=stateFn$appId
+      rangeFn=stateFn$range
+      hostFn=stateFn$host
+      selectionFn=stateFn$selection
+  }}
+</template>

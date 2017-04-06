@@ -1,0 +1,59 @@
+<template name="app.dashboard.pubsub.timecharts">
+  <div>
+    <div class="breakdown-chart">
+      {{>
+        render component="timeseries.single.trace"
+        metricDataKey="timeseries.pubsubResTime"
+        traceListDataKey="traces.pubsubList"
+        histogramDataKey="histogram.pubsub"
+        traceType="pub"
+        metric="resTime"
+        label="Response Time"
+        title="Response Time(ms)"
+        helperId="timeseries-pubsubResTimeWithTraces"
+        color="#7B4CC2"
+        extraArgsFn=stateFn$timeseriesArgs
+      }}
+    </div>
+
+    <div class="breakdown-chart">
+      {{>
+        render component="timeseries.single"
+        metricDataKey="timeseries.subRate"
+        metric="subs"
+        label="Sub Rate"
+        title="Sub Rate (Subscriptions Per Minute)"
+        helperId="timeseries-subRate"
+        color="#DF7B4C"
+        extraArgsFn=stateFn$timeseriesArgs
+      }}
+    </div>
+
+    <div class="breakdown-chart">
+      {{>
+        render component="timeseries.multi"
+        metrics="subs,resTime"
+        labels="Sub Rate,Response Time"
+        colors="#DF7B4C, #7B4CC2"
+        metricDataKey="timeseries.subRateResTime"
+        title="Sub Rate & Response Time"
+        extraArgsFn=stateFn$timeseriesArgs
+      }}
+    </div>
+
+    <div class="breakdown-chart">
+      {{>
+        render component="timeseries.multi"
+        metrics="activeSubs,lifeTime"
+        labels="Active Subs,Life Time"
+        colors="#408787,#80583E"
+        metricDataKey="timeseries.activeSubsLifeTime"
+        title="Active Subs & Average Life Time"
+        onTooltipFormat=action$renderLifetimeTooltip
+        extraArgsFn=stateFn$timeseriesArgs
+      }}
+    </div>
+  </div>
+
+
+</template>

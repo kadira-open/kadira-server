@@ -1,0 +1,30 @@
+<template name="debug.activityChart">
+  <div class="activity-chart">
+    <div>
+      <h5 title="{{state$tooltip}}">{{state$title}} ({{state$time}}ms, {{state$count}}) {{>showHelp state$helperId}}</h5>
+      <div class="score-bar-background">
+        <div class="score-bar"></div>
+      </div>
+    </div>
+    <div class="activity-items">
+      {{#each state$items}}
+        <div class="activity-item" title="{{fullName}}">
+          <div class='name pull-left'>{{fullName}}</div> 
+          <div class='rest pull-left'> <em>{{elapsedTime}}ms / {{count}}</em></div>
+          <div style='clear:both'></div>
+        </div>
+      {{/each}}
+    </div>
+    {{#if state$hasMore}}
+      <div class="links">
+        <a href="#" class="show-all">
+          {{#if state$showAll}}
+            Show Top Five
+          {{else}}
+            Show All
+          {{/if}}
+        </a>
+      </div>
+    {{/if}}
+  </div>
+</template>

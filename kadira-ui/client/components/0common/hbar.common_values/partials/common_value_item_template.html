@@ -1,0 +1,25 @@
+<template name="commonValueItemTemplate">
+  <div class="list-group-item {{#if state$isSelected id}}selected{{/if}}">
+    <div class="hbar-item">
+      <span class=" pull-right">
+        <span class="badge alert-info">
+          {{sortedValue}}
+        </span>
+      </span>
+      <span class="hbar-value-type">{{sortedValueTitle}}</span>
+      <span class="clearfix"></span>
+
+      <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{pSortedValue}}%;"></div>
+      </div>
+      {{#if commonValueTitle}}
+        <div class="progress">
+          <div class="progress-bar progress-bar-warning" role="progressbar" style="width: {{pCommonValue}}%;">
+          </div>
+        </div>
+        <div class="common-value"> {{commonValueTitle}} : {{commonValue}}</div>
+      {{/if}}
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</template>

@@ -1,0 +1,7 @@
+<template name="loadingButton">
+  {{#if state$isType 'text|icon'}}
+    <button id="{{state$id}}" name="{{state$name}}" class="{{state$class}}" type="{{state$action}}" {{state$disabled}}>
+      <span class="glyphicon {{state$icon}}">{{state$text}}</span>
+    </button>
+  {{/if}}
+</template>

@@ -1,0 +1,38 @@
+<template name="app.alerts.editor.ruleA">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="">
+        <select id="alrt-rule-type" name="alrt-rule-type" class="form-control">
+          {{#each state$RULE_TYPES}}
+            {{#if optGroup}}
+              <optgroup label="{{key}}">
+                {{#each optGroupList}}
+                  <option value="{{value}}" data-metric="{{metric}}" selected="{{selected}}">{{key}}</option>
+                {{/each}}
+              </optgroup>
+            {{else}}
+              <option value="{{value}}" data-metric="{{metric}}" selected="{{selected}}">{{key}}</option>
+            {{/if}}
+          {{/each}}
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="">
+        <select id="alrt-condition" name="alrt-condition" class="form-control">
+          {{#each state$CONDITIONS}}
+             <option value="{{value}}" data-metric="{{metric}}" selected="{{selected}}">{{key}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="input-group">
+        <input id="alrt-value" name="alrt-value" class="form-control" placeholder="Threshold" value="{{state$alertInfo.threshold}}" type="number" step="any" required="">
+        <div class="input-group-btn">
+          <button type="button" id="alrt-value-metric" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown" disabled="disabled">{{state$metric}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

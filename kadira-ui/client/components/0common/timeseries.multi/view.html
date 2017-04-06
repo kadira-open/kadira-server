@@ -1,0 +1,20 @@
+<template name="timeseries.multi">
+  <h4>
+    {{state$title}}
+    {{#if state$helperId}}
+      {{>showHelp state$helperId}}
+    {{/if}}
+  </h4>
+  {{#render component="loading" isLoadingFn=stateFn$isChartLoading}}
+    {{>
+      render component="timeChart"
+      type="line"
+      seriesFn=stateFn$chartData
+      axisType=state$axisType
+      onRenderTooltip=action$renderTooltip
+      onPointMouseHover=action$setCurrentChartTime
+      onPointMouseOut=action$clearChartTime
+      plotLinesFn=stateFn$plotLines
+    }}
+  {{/render}}
+</template>

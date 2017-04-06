@@ -1,0 +1,61 @@
+<template name="jobsList">
+  <div class="row">
+    <div class="col-md-6">
+      {{#if state$isProfileList}}
+        <div id="pf-main-title">
+          <a href="#" class="btn btn-sm no-bg btn-default" id="new-cpu-profile">{{i18n "tools.take_remote_profile"}}</a>
+          <a href="http://debug.kadiraio.com/debug?tab=cpu-profiler" target="_blank" id="go-to-remote-profile" class="btn btn-sm">{{i18n "tools.visit_kadira_debug_to_local_profiles"}}</a>
+        </div>
+        {{#render component="loading" isLoadingFn=stateFn$isLoadingJobs}}
+          {{#each state$jobsList}}
+            <div class="pf-job-item">
+              {{> jobItem}}
+            </div>
+          {{/each}}
+        {{/render}}
+        {{#if state$hasMoreJobs}}
+        <div class="text-center">
+          <a href="#" id="pf-load-more" class="btn">{{i18n "common.load_more"}}</a>
+        </div>
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+</template>
+
+<template name="jobItem">
+  <div class="row">
+    <span class="col-xs-8">
+      <h4>{{data.name}} - <small><strong>{{prettifyDate this.updatedAt}}</strong></small></h4>
+      <p>profile for {{data.duration}} seconds
+        {{#if data.beforeCpu}}
+          (profile time cpu - {{prettifyCpuTime data.beforeCpu}}%)
+        {{/if}}</p>
+    </span>
+    <span class="col-xs-4">
+      {{#if isState state "completed"}}
+        <a href="#" id="pf-item-action" class="btn pf-item-action btn-sm pull-right">{{i18n "common.analyze"}}</a>
+      {{/if}}
+      <a href="#" id="pf-item-delete" class="btn btn-danger btn-sm pf-item-delete pull-right">{{i18n "common.delete"}}</a>
+    </span>
+  </div>
+  <div>
+    {{#unless isState state "completed"}}
+      <div class="pf-created-desc pf-state-{{state}}">
+        {{#if isState state "created"}}
+          Copy and paste following code in <u>your app's</u> browser console to start taking the profile.
+          <pre><code>Kadira.profileCpu({{data.duration}}, "{{_id}}", "remote");</code></pre>
+        {{/if}}
+        {{#if isState state "initiated"}}
+          started taking your cpu profile.
+        {{/if}}
+        {{#if isState state "profile-taken"}}
+          CPU profile has been taken and now it's being uploading to Kadira.
+        {{/if}}
+        {{#if isState state "errored"}}
+          {{data.errorMessage}}
+        {{/if}}
+      </div>
+    {{/unless}}
+    </div>
+</template>

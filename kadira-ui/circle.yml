@@ -1,0 +1,19 @@
+machine:
+  node:
+    version: 0.12.2
+
+dependencies:
+  override:
+    -  if [ ! -f $HOME/.meteor/meteor ]; then curl https://install.meteor.com | sh; fi
+    - chromedriver --port=9515:
+        background: true
+  cache_directories:
+    - ../.meteor
+
+test:
+  pre:
+    - npm install -g eslint
+    - npm install -g anticoders/gagarin
+  override:
+    - eslint ./
+    - PATH=$PATH:$HOME/.meteor METEOR_ENV=test TEST=all bash .test -t 10000 -T 10000

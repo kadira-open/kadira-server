@@ -1,0 +1,27 @@
+<template name="hbar">
+  <div class="hbar">
+    {{#if state$data}}
+      <span class="pull-right"><label class="dropdown-label">{{i18n "common.sorted_by"}}</label>
+      {{>
+        render component="dropdown"
+        dataFn=stateFn$sortOptions
+        onSelect=action$notifySortOrderChange
+        selectedFn=stateFn$sortedItem
+      }}
+      </span>
+      <div class="clearfix"></div>
+      <div class="list-group" style="cursor: pointer; max-height: {{state$height}}px;">
+        {{#each state$data}}
+          {{#if state$itemTemplate}}
+            {{> UI.dynamic template=state$itemTemplate data=this}}
+          {{/if}}
+        {{/each}}
+      </div>
+    {{else}}
+      <h3 class="hbar-no-data chart-no-data">
+        <span class="glyphicon glyphicon-exclamation-sign"></span>
+        {{i18n "common.no_data"}}
+      </h3>
+    {{/if}}
+  </div>
+</template>

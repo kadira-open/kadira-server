@@ -1,0 +1,62 @@
+<template name="noData">
+  <div class="jumbotron"  id="no-data-wrapper">
+
+    <h2>{{i18n 'app.configure_your_app'}}</h2>
+
+    <p>1. {{i18n 'app.config_install_pkg'}}</p>
+    <pre><code>meteor add meteorhacks:kadira
+
+  // for Meteor 0.8.3 and older versions
+  mrt add kadira</code></pre>
+
+    <p>2. {{{i18n 'app.config_connect_code'}}}</p>
+    <div id="no-data-code-wrap">
+      <ul class="nav nav-tabs" role="tablist">
+
+        <li role="presentation" class="active">
+          <a href="#via-code" aria-controls="via-code" role="tab" data-toggle="tab">Via Code</a>
+        </li>
+
+        <li role="presentation">
+          <a href="#via-meteor-settings" aria-controls="via-meteor-settings" role="tab" data-toggle="tab">Via Meteor Settings</a>
+        </li>
+
+        <li role="presentation">
+          <a href="#via-env" role="tab" aria-controls="via-env" data-toggle="tab">Via Environmental Variables</a>
+        </li>
+
+      </ul>
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="via-code">
+          <p>add following code to `server/kadira.js`</p>
+          <pre><code>Kadira.connect('{{state$appId}}', '{{state$secret}}');</code></pre></div>
+        <div role="tabpanel" class="tab-pane" id="via-meteor-settings">
+          <p>add following into your `settings.json` file</p>
+          <pre><code>"kadira": { <br/>  "appId": "{{state$appId}}", <br/>  "appSecret": "{{state$secret}}" <br/> }</code></pre>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="via-env">
+          <p>export following environmental variable before running your app.</p>
+          <pre><code>export KADIRA_APP_ID={{state$appId}} <br/>export KADIRA_APP_SECRET={{state$secret}}</code></pre>
+         </div>
+      </div>
+    </div>
+    <br/>
+    <p>3. {{{i18n 'app.config_learn_more'}}}</p>
+
+    <hr>
+
+    <h3>{{i18n 'app.config_configurations'}}</h3>
+    <p>{{i18n 'app.config_other_way'}}</p>
+    <br>
+    <div class="input-group input-large">
+     <label class="pull-left">{{i18n 'app.app_id'}} </label>
+      <input class="form-control" type="text" placeholder="" name="" autocomplete="off"  value="{{state$appId}}" readonly="readonly">
+      {{>render component="clipboardButton" text=state$appId label="App ID"}}
+    </div>
+    <div class="input-group input-large">
+    <label class="pull-left">{{i18n 'app.app_secret'}} </label>
+      <input class="form-control" type="text" placeholder="" name="" autocomplete="off" value="{{state$secret}}"  readonly="readonly">
+      {{>render component="clipboardButton" text=state$secret label="App Secret"}}
+    </div>
+  </div>
+</template>

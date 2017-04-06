@@ -1,0 +1,28 @@
+<template name="main">
+  {{#render component="loading" isLoadingFn=stateFn$isLogginIn opacity="0"}}
+    {{#if state$ignoreLoginCheck}}
+      <div id="wrapper" class="col-md-12">
+        {{>render component=state$content options=state$options}}
+      </div>
+    {{else}}
+
+      {{#if state$isLoggedIn}}
+        <div id="wrapper" class="col-md-12">
+          {{>render component=state$content options=state$options}}
+        </div>
+        {{>render component="upgradeNotifier"}}
+      {{else}}
+        {{#unless state$isLogginIn}}
+          <div class="alert alert-danger col-md-4 col-md-offset-4" id="sign-in-message">
+            {{i18n "signIn.sign_in_message"}}
+          </div>
+          <div class="clearfix"></div>
+          {{>render component="signIn"}}
+        {{/unless}}
+      {{/if}}
+
+      {{>render component="connectionIndicator"}}
+      
+    {{/if}}
+  {{/render}}
+</template>

@@ -1,0 +1,51 @@
+{
+  "name": "kadira-alertsman",
+  "version": "1.0.0",
+  "description": "Main Alerting System in Kadira",
+  "license": "Kadira Inc",
+  "options": {
+    "mocha": "--require scripts/mocha_runner server/**/__tests__/**/*.js"
+  },
+  "scripts": {
+    "dev": "./scripts/devrun.sh",
+    "prod": "bash ./scripts/prodrun.sh",
+    "localprod": "./scripts/localprodrun.sh",
+    "lintcore": "./node_modules/.bin/eslint",
+    "lint": "npm run lintcore -- ./server",
+    "lintfix": "npm run lint -- --fix",
+    "testonly": "./node_modules/.bin/mocha $npm_package_options_mocha",
+    "test": "npm run lint && npm run testonly"
+  },
+  "devDependencies": {
+    "nodemon": "1.x.x",
+    "mocha": "2.x.x",
+    "chai": "3.x.x",
+    "eslint": "1.x.x",
+    "babel-eslint": "4.x.x",
+    "eslint-plugin-babel": "2.x.x",
+    "nock": "2.x.x"
+  },
+  "dependencies": {
+    "babel-core": "6.x.x",
+    "babel-loader": "6.x.x",
+    "babel-polyfill": "6.x.x",
+    "babel-preset-es2015": "6.x.x",
+    "babel-preset-stage-2": "6.x.x",
+    "bluebird": "3.x.x",
+    "debug": "2.x.x",
+    "goo.gl": "0.x.x",
+    "html-to-text": "1.x.x",
+    "librato-node": "4.x.x",
+    "lodash": "3.x.x",
+    "lokka": "1.x.x",
+    "lokka-transport-http-auth": "1.x.x",
+    "moment": "2.x.x",
+    "mongo-oplog": "1.x.x",
+    "mongodb": "2.x.x",
+    "node-fetch": "1.x.x",
+    "nodemailer": "1.x.x",
+    "nodemailer-smtp-transport": "1.x.x",
+    "promise-retry": "0.2.x"
+  },
+  "private": true
+}

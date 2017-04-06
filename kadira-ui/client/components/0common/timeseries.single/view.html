@@ -1,0 +1,20 @@
+<template name="timeseries.single">
+  <div class="time-chart-wrap">
+    <div class="time-chart-container">
+      {{> timechartHeader}}
+
+      {{#render component="loading" isLoadingFn=stateFn$isChartLoading}}
+        {{>
+          render component="timeChart"
+          type=state$chartType
+          color=state$color
+          seriesFn=stateFn$processedChartData
+          onClick=action$setSelectedPoint
+          plotLinesFn=stateFn$plotLines
+          onPointMouseHover=action$setCurrentChartTime
+          onPointMouseOut=action$clearChartTime
+        }}
+      {{/render}}
+    </div>
+  </div>
+</template>

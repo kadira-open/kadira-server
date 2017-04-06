@@ -1,0 +1,20 @@
+<template name="traceExplorer.modal">
+
+  {{#render component="modal"
+    id="trace-explorer-dialog"
+    titleFn=stateFn$dialogTitle
+    canShowFn=stateFn$canShow
+    onClose=action$closeDialog
+  }}
+    {{>
+      render component="traceExplorer"
+      typeFn=stateFn$type
+      traceFn=stateFn$trace
+      isLoadingFn=stateFn$isTraceLoading
+    }}
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">{{i18n "common.close"}}</button>
+    </div>
+  {{/render}}
+
+</template>

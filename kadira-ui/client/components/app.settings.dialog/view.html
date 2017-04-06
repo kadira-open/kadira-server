@@ -1,0 +1,92 @@
+<template name="app.settings.dialog">
+
+  <div id="app-info" class="app-settings">
+    <legend>{{i18n "settings.app_info"}}</legend>
+    <div class="form-group">
+      <label for="usr">{{i18n "settings.app_name"}}</label>
+      <input type="text" class="form-control" placeholder="" name="" autocomplete="off" id="update-app-name" value="{{state$currentAppName}}">
+    </div>
+    <button class="btn btn-info btn-sm" id="update-app-info">{{i18n "settings.update_btn_text"}}</button>
+    <br/>
+  </div>
+
+  <div id="app-ids" class="app-settings">
+    <legend>{{i18n "settings.appid_and_app_secret"}}</legend>
+    <div role="tabpanel">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#raw-ids" aria-controls="raw-ids" role="tab" data-toggle="tab">Raw</a></li>
+        <li role="presentation"><a href="#via-mcode" aria-controls="via-mcode" role="tab" data-toggle="tab">{{i18n "settings.via_code"}}</a></li>
+        <li role="presentation"><a href="#via-msettings" aria-controls="via-msettings" role="tab" data-toggle="tab">{{i18n "settings.via_meteor_settings"}}</a></li>
+        <li role="presentation"><a href="#via-env-variable" aria-controls="via-env-variable" role="tab" data-toggle="tab">{{i18n "settings.via_environmental_variables"}}</a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane active" id="raw-ids">
+          <form id="raw-ids" class="form-inline">
+            <div class="form-group">
+              <label>{{i18n 'app.app_id'}}</label>
+              <input type="text" class="form-control" id="raw-app-id" placeholder="" value="{{state$currentAppId}}" readonly="true">
+              {{>render component="clipboardButton" text=state$currentAppId label="App ID"}}
+            </div>
+            <div class="form-group">
+              <label>{{i18n 'app.app_secret'}}</label>
+              <input type="text" class="form-control" id="raw-app-secret" placeholder="" value="{{state$currentAppSecret}}" readonly="true">
+              {{>render component="clipboardButton" text=state$currentAppSecret label="App Secret"}}
+            </div>
+          </form>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="via-mcode">
+          <p>add following code to `server/kadira.js`</p>
+          <pre><code>Kadira.connect('{{state$currentAppId}}', '{{state$currentAppSecret}}');</code></pre>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="via-msettings">
+          <p>add following into your `settings.json` file</p>
+          <pre><code>"kadira": { <br/>  "appId": "{{state$currentAppId}}", <br/>  "appSecret": "{{state$currentAppSecret}}" <br/> }</code></pre>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="via-env-variable">
+          <p>export following environmental variable before running your app.</p>
+          <pre><code>export KADIRA_APP_ID={{state$currentAppId}}
+export KADIRA_APP_SECRET={{state$currentAppSecret}}</code></pre>
+        </div>
+
+      </div>
+    </div>
+    <button class="btn btn-danger btn-sm" id="regenerate-app-tokens">{{i18n "settings.regenerate_btn_text"}}</button>
+    <button class="btn btn-default btn-sm" id="regenerate-confirm">{{i18n "settings.confirm_btn_text"}}</button>
+    <button class="btn btn-default btn-sm" id="regenerate-confirm-cancel">{{i18n "settings.cancel_btn_text"}}</button>
+
+  </div>
+  {{#if state$isOwner}}
+    <div class="app-pricing">
+      <legend>{{i18n "settings.pricing"}}</legend>
+      {{> render
+        component="app.setPlan"
+        currentPricingType=state$pricingType
+      }}
+      <br/>
+      <button class="btn btn-sm btn-primary" id="save-pricing-type">{{i18n "common.save"}}</button>
+      <br/>
+    </div>
+  {{/if}}
+  <div id="app-del" class="app-settings">
+    <br/>
+    <legend>{{i18n "settings.delete_the_app"}}</legend>
+    <form class="form-inline">
+      <button class="btn btn-danger btn-sm" id="delete-app">{{i18n "settings.delete_btn_text"}}</button>
+        <span class="app-delete-hidden-control">
+          <input id="delete-app-name" class="form-control" type="text" placeholder="Please enter app name correctly to confirm." name="" autocomplete="off"  value="">
+          <button id="delete-confirm" class="btn btn-default btn-sm">{{i18n "settings.confirm_btn_text"}}</button>
+          <button id="delete-confirm-cancle" class="btn btn-default btn-sm">{{i18n "settings.cancel_btn_text"}}</button>
+        </span>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">{{i18n "common.close"}}</button>
+  </div>
+</template>

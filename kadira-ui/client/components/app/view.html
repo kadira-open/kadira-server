@@ -1,0 +1,32 @@
+<template name="app">
+  {{#if state$hasNoData}}
+    {{#if state$hasNoApp}}
+      {{> render component="loading" isLoadingFn=stateFn$isLoading }}
+    {{else}}
+     {{> noData}}
+    {{/if}}
+  {{else}}
+    <div class="col-md-12">
+      <div id="main-nav" class="row">
+        <div class="pull-left">
+          {{> render component="navigation" id="main" navs=state$navs pos="main"}}
+        </div>
+        <div class="pull-right">
+          {{#if state$canShowHostSelector}}
+            {{> render component="app.hostSelector"}}
+          {{/if}}
+          {{>
+            render component="dropdown" id="resolution"
+            dataFn=stateFn$ranges
+            selectedFn=stateFn$selectedRange
+            onSelect=action$setRangeQueryParam
+          }}
+          {{> render component="app.datebar"}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      {{> render component=stateFn$sectionComponent}}
+    </div>
+  {{/if}}
+</template>

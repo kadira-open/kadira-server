@@ -1,0 +1,54 @@
+<template name="methodExpClientEvents">
+  <b>App Loaded into Browser</b><br>
+
+  {{#each state$eventsInfo this}}
+    {{#if state$waitTime this}}
+      <div class='after-label'>
+        after <em>{{state$waitTime this}}</em>
+      </div>
+    {{/if}}
+    {{#if errorTrace}}
+      <div class="client-error-tracebox back-red">
+        {{> methodExpClientEventsDetails this}}
+        <p>
+          Error: <b>{{errorName}}</b> <br>
+          Stack: <br>
+          <pre>{{errorTrace.stack}}</pre>
+        </p>
+      </div>
+    {{else}}
+      <div class="client-error-tracebox">
+        {{> methodExpClientEventsDetails this}}
+      </div>
+    {{/if}}
+  {{/each}}
+</template>
+
+
+<template name="methodExpClientEventsDetails">
+
+  <p>{{>UI.dynamic template=ownerTemplate data=this}}
+  {{> methodExpEventsShowArgs template=ownerTemplate data=this}}
+  </p>
+  <ol class='error-client-events'>
+  {{#each $events}}
+  <li>{{>UI.dynamic template=eventsTemplate data=this}}
+  {{> methodExpEventsShowArgs template=eventsTemplate data=this}}
+  </li>
+  {{/each}}
+  </ol>
+
+</template>
+
+<template name="methodExpEventsShowArgs">
+  {{#if getArgs template this}}
+    <a href="#" class="view-details">Show more</a>
+  {{/if}}
+   <div class="details">
+    <ul class="args">
+      {{#each getArgs template this}}
+      <li>{{key}}: {{value}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</template>

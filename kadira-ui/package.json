@@ -1,0 +1,35 @@
+{
+  "name": "kadira-ui",
+  "version": "1.0.0",
+  "description": "This is the main UI of kadira.",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.23.0",
+    "bcrypt": "^1.0.2",
+    "color-hash": "^1.0.3",
+    "crc": "^3.4.4",
+    "helmet": "^3.5.0",
+    "histo-utils": "^0.2.0",
+    "ismobilejs": "^0.4.0",
+    "load-script": "^1.0.0",
+    "lru-cache": "^4.0.2",
+    "meteor-node-stubs": "^0.2.6",
+    "react": "^15.4.2",
+    "react-addons-create-fragment": "^15.4.2",
+    "react-addons-css-transition-group": "^15.4.2",
+    "react-addons-linked-state-mixin": "^15.4.2",
+    "react-addons-perf": "^15.4.2",
+    "react-addons-pure-render-mixin": "^15.4.2",
+    "react-addons-test-utils": "^15.4.2",
+    "react-addons-transition-group": "^15.4.2",
+    "react-addons-update": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "ua-parser-js": "^0.7.12",
+    "zeroclipboard": "^2.3.0"
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
+}

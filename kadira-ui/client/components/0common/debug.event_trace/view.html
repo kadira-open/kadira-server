@@ -1,0 +1,31 @@
+<template name="debug.eventTrace">
+  <!-- <h4>Event Info {{>showHelp 'kd-event-trace'}}</h4> -->
+
+  <div id="info" class="event-trace">
+    {{#if state$hasTrace}}
+      {{>
+        render component="traceExplorer" 
+        disableSharing=true 
+        traceFn=stateFn$trace
+        typeFn=stateFn$type
+        isLoadingFn=stateFn$isTraceLoading
+      }}
+    {{else}}
+      {{#if state$sampleMessages}}
+        <div class="raw-data">
+          {{#each state$sampleMessages}}
+            <pre>{{this}}</pre>
+          {{/each}}
+        </div>
+      {{else}}
+        <h4 style="color: #7E7E7E; text-align: center; margin: 50px 50px 0;" class="empty">
+          <small>
+            <span class="glyphicon glyphicon-exclamation-sign"></span> 
+            No Traces Available.
+          </small>
+        </h4>
+        <!-- <p class="toggle-mode">Click here! Switch To Activity Mode</p> -->
+      {{/if}}
+    {{/if}}
+  </div>
+</template>

@@ -1,0 +1,21 @@
+<template name="app.dashboard">
+  <div id="section-nav">
+    {{>
+      render component="navigation"
+      id="dashboard"
+      navs=state$navs
+    }}
+  </div>
+
+  <div id="section">
+    {{>
+      render component=state$activeComponent
+    }}
+  </div>
+  <div>
+
+    {{>
+      render component="traceExplorer.modal"
+    }}
+  </div>
+</template>

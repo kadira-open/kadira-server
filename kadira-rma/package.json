@@ -1,0 +1,24 @@
+{
+  "name": "kadira-rma",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "run-p -l run:**",
+    "run:errors-1min": "PROFILE=1min PROVIDER=errors sh start.sh",
+    "run:errors-30min": "PROFILE=30min PROVIDER=errors sh start.sh",
+    "run:errors-3hour": "PROFILE=3hour PROVIDER=errors sh start.sh",
+    "run:methods-1min": "PROFILE=1min PROVIDER=methods sh start.sh",
+    "run:methods-30min": "PROFILE=30min PROVIDER=methods sh start.sh",
+    "run:methods-3hour": "PROFILE=3hour PROVIDER=methods sh start.sh",
+    "run:pubsub-1min": "PROFILE=1min PROVIDER=pubsub sh start.sh",
+    "run:pubsub-30min": "PROFILE=30min PROVIDER=pubsub sh start.sh",
+    "run:pubsub-3hour": "PROFILE=3hour PROVIDER=pubsub sh start.sh",
+    "run:system-1min": "PROFILE=1min PROVIDER=system sh start.sh",
+    "run:system-30min": "PROFILE=30min PROVIDER=system sh start.sh",
+    "run:system-3hour": "PROFILE=3hour PROVIDER=system sh start.sh"
+  },
+  "dependencies": {
+    "npm-run-all": "^3.1.2",
+    "pick-mongo-primary": "^0.4.1"
+  }
+}

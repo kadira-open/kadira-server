@@ -1,0 +1,19 @@
+<template name="app.datebar">
+  <button class="btn btn-sm no-bg datebar filter-prev">Prev</button>
+  <div class="btn-group">
+    <button id="real-time-indicator" class="btn btn-sm no-bg datebar">
+      <span class="glyphicon glyphicon-flash"></span>
+    </button>
+    <button class="btn date-btn btn-sm no-bg datebar" id="date-jump">{{state$selectedDateOrMode}}</button>
+  </div>
+  <div id="date-select-popover-wrap">
+    {{> render
+      component="datepicker"
+      id="main-filter"
+      currentDateFn=stateFn$date
+      canShowTimeSliderFn=stateFn$canShowTimeSlider
+    }}
+    <div class="pull-right" id="date-jump-submit"><button class="btn btn-sm btn-primary">Jump</button></div>
+  </div>
+  <button class="btn btn-sm no-bg filter-next datebar">Next</button>
+</template>

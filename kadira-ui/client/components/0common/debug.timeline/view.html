@@ -1,0 +1,34 @@
+<template name="debug.timeline">
+  <div id="kd-timeline"></div>
+
+  {{#if state$hasTrace}}
+    {{#render component="modal"
+      id="trace-explorer-dialog"
+      titleFn=stateFn$dialogTitle
+      canShowFn=stateFn$canShow
+      onClose=action$closeDialog
+    }}
+
+      {{>render component="react" 
+        class="TimelineComponent.TraceTimeBar"
+        sections=state$sections
+        maxSectionWidth=350
+        sectionHeight=10
+        sectionPadding=10
+      }}
+
+      <hr style="margin: 10px 0" />
+
+      {{>
+        render component="traceExplorer" 
+        disableSharing=true 
+        typeFn=stateFn$type
+        traceFn=stateFn$trace
+        isLoadingFn=stateFn$isTraceLoading
+      }}
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">{{i18n "common.close"}}</button>
+      </div>
+    {{/render}}
+  {{/if}}
+</template>

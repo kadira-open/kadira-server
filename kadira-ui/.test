@@ -1,0 +1,21 @@
+#!/bin/bash
+set -e
+
+if [[ -z $TEST ]]; then
+  TEST='integration'
+fi
+
+if [[ $TEST == "integration" ]]; then
+  METEOR_ENV=test MONGO_SHARD_URL_one=mongodb://localhost/apm MONGO_SHARD_URL_two=mongodb://localhost/two gagarin --flavor fiber --settings settings.json tests/gagarin/integration/ -t 10000 -T 10000 $@
+elif [[ $TEST == "unit-client" ]]; then
+  METEOR_ENV=test MONGO_SHARD_URL_one=mongodb://localhost/apm MONGO_SHARD_URL_two=mongodb://localhost/two  gagarin --flavor fiber --settings settings.json tests/gagarin/unit-client/ -t 10000 -T 10000 $@
+elif [[ $TEST == "unit-server" ]]; then
+  METEOR_ENV=test MONGO_SHARD_URL_one=mongodb://localhost/apm MONGO_SHARD_URL_two=mongodb://localhost/two  gagarin --flavor fiber --settings settings.json tests/gagarin/unit-server/ -t 10000 -T 10000 $@
+elif [[ $TEST == "e2e" ]]; then
+  METEOR_ENV=test MONGO_SHARD_URL_one=mongodb://localhost/apm MONGO_SHARD_URL_two=mongodb://localhost/two  gagarin --flavor fiber --settings settings.json tests/gagarin/e2e/ -t 10000 -T 10000 $@
+elif [[ $TEST == 'all' ]]; then
+  METEOR_ENV=test MONGO_SHARD_URL_one=mongodb://localhost/apm MONGO_SHARD_URL_two=mongodb://localhost/two  gagarin --flavor fiber --settings settings.json tests/gagarin/unit-server/ -t 10000 -T 10000 $@
+  METEOR_ENV=test MONGO_SHARD_URL_one=mongodb://localhost/apm MONGO_SHARD_URL_two=mongodb://localhost/two  gagarin --flavor fiber --settings settings.json tests/gagarin/unit-client/ -t 10000 -T 10000 $@
+  METEOR_ENV=test MONGO_SHARD_URL_one=mongodb://localhost/apm MONGO_SHARD_URL_two=mongodb://localhost/two  gagarin --flavor fiber --settings settings.json tests/gagarin/integration/ -t 10000 -T 10000 $@
+  METEOR_ENV=test MONGO_SHARD_URL_one=mongodb://localhost/apm MONGO_SHARD_URL_two=mongodb://localhost/two  gagarin --flavor fiber --settings settings.json tests/gagarin/e2e/ -t 10000 -T 10000 $@
+fi

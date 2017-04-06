@@ -1,0 +1,55 @@
+<template name="app.errors.trace">
+  {{>
+    render component="timeseries.single"
+    metricDataKey=state$metricDataKey
+    metric=state$metric
+    label=state$label
+    color=state$color
+    extraArgsFn=stateFn$extraArgs 
+    excludeArgs=state$excludeArgs 
+    onChartClick=action$setSelectedTime
+  }}
+
+  {{#if state$isErrorSelected}}
+    <div class="change-error-status">
+      {{#render component="loading" isLoadingFn=stateFn$isStatusLoading opacity="0"}}
+        {{>
+          render component="dropdown"
+          dataFn=stateFn$errorStatuses
+          onSelect=action$notifyStatusChange
+          selectedFn=stateFn$currentStatus
+        }}
+      {{/render}}
+    </div>
+    <ul class="nav nav-tabs" role="tablist" id="error-manager-traces-tabs">
+      <li class="active"><a href="#em-inline-trace-exp" role="tab" data-toggle="tab" data-tab="sample">Sample Trace</a></li>
+      <li class=""><a href="#errors-chart" role="tab" data-toggle="tab" data-tab="list">Traces List</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="em-inline-trace-exp" class="tab-pane active">
+        {{#if state$isNewSampleTraceAvailable}}
+          <div id="em-load-new-traces"><a href="#"> Found new traces. click to load.</a></div>
+        {{/if}}
+        {{#if state$isSampleTraceAvailable}}
+          {{>
+            render component="traceExplorer"
+            traceFn=stateFn$sampleTrace
+            typeFn=stateFn$traceType
+            isLoadingFn=stateFn$isSampleTracesLoading
+          }}
+        {{else}}
+          <div id="sample-trace-empty">
+            <h4 style="color: #7E7E7E;" class="empty"><small><span class="glyphicon glyphicon-exclamation-sign"></span> No Sample Traces Found</small></h4>
+          </div>
+        {{/if}}
+      </div>
+      <div id="errors-chart" class="time-chart-trace tab-pane">
+        {{> tracesBox}}
+      </div>
+    </div>
+  {{else}}
+    {{> tracesBox}}
+  {{/if}}
+
+
+</template>

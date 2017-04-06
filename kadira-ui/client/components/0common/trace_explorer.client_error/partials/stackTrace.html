@@ -1,0 +1,10 @@
+<template name="methodExpStackTrace">
+  {{>methodExpStackTraceSummery this}}
+</template>
+
+<template name="methodExpStackTraceSummery">
+  <div class="client-error-tracebox back-red">
+    <p>Error: {{name}}</p>
+    <pre>{{stacks.[0].stack}}</pre>
+  </div>
+</template>

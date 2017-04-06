@@ -1,0 +1,32 @@
+<template name="app.tools.cpu.analyse">
+  <h3 class="pf-breakdown-title" style="min-height: 30px;">
+    {{#if state$canGoBack}}
+      <a href="#" id="pf-back" class="btn btn-sm btn-default" style="position: absolute;" >{{i18n 'common.back'}}</a>
+    {{/if}}
+    {{#with state$jobInfo}}
+      <span class="col-xs-offset-1 {{#unless jobInfo}} {{/unless}}">
+        {{i18n "tools.cpu_analyzer"}} : {{data.name}} <small><strong>{{state$prettifyDate updatedAt}}</strong></small>
+        {{> render component="shareButton"
+          shareLinkFn=stateFn$shareLink
+          buttonName="URL"
+          className="pf-breakdown-title"
+        }}
+        <span id="em-learn-more-top-link" class="pull-right btn btn-sm">
+          <a href="https://kadira.io/academy/analyze-meteor-cpu-profile/" target="_blank">{{i18n "tools.learn_how_to_analyze_profile"}}</a>
+        </span>
+      </span>
+      <div class="col-xs-offset-1">
+        <p class="pf-sub-title">
+          profile for {{data.duration}} seconds
+          {{#if data.beforeCpu}}
+            (profile time cpu - {{state$prettifyCpuTime data.beforeCpu}}%)
+          {{/if}}
+        </p>
+      </div>
+    {{/with}}
+  </h3>
+
+  {{>render component="profileAnalyser" 
+    profile=stateFn$profile
+  }}
+</template>

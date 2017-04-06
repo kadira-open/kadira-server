@@ -1,0 +1,82 @@
+{
+  "dependencies": {
+    "lru-cache": {
+      "version": "2.6.4",
+      "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-2.6.4.tgz",
+      "from": "lru-cache@2.6.4"
+    },
+    "mongo-sharded-cluster": {
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/mongo-sharded-cluster/-/mongo-sharded-cluster-1.2.0.tgz",
+      "from": "mongo-sharded-cluster@1.2.0",
+      "dependencies": {
+        "async": {
+          "version": "1.4.2",
+          "resolved": "https://registry.npmjs.org/async/-/async-1.4.2.tgz",
+          "from": "async@1.4.2"
+        },
+        "mongodb": {
+          "version": "1.4.32",
+          "resolved": "https://github.com/meteor/node-mongodb-native/tarball/634759e6326dc19a228df66ddb309285532f3b8a",
+          "from": "mongodb@https://github.com/meteor/node-mongodb-native/tarball/634759e6326dc19a228df66ddb309285532f3b8a",
+          "dependencies": {
+            "bson": {
+              "version": "0.2.18",
+              "resolved": "https://github.com/meteor/js-bson/tarball/0103b53",
+              "from": "bson@https://github.com/meteor/js-bson/tarball/0103b53",
+              "dependencies": {
+                "nan": {
+                  "version": "1.5.1",
+                  "resolved": "https://registry.npmjs.org/nan/-/nan-1.5.1.tgz",
+                  "from": "nan@1.5.1"
+                }
+              }
+            },
+            "readable-stream": {
+              "version": "2.0.2",
+              "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.0.2.tgz",
+              "from": "readable-stream@2.0.2",
+              "dependencies": {
+                "core-util-is": {
+                  "version": "1.0.1",
+                  "resolved": "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.1.tgz",
+                  "from": "core-util-is@1.0.1"
+                },
+                "inherits": {
+                  "version": "2.0.1",
+                  "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.1.tgz",
+                  "from": "inherits@2.0.1"
+                },
+                "isarray": {
+                  "version": "0.0.1",
+                  "resolved": "https://registry.npmjs.org/isarray/-/isarray-0.0.1.tgz",
+                  "from": "isarray@0.0.1"
+                },
+                "process-nextick-args": {
+                  "version": "1.0.3",
+                  "resolved": "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-1.0.3.tgz",
+                  "from": "process-nextick-args@1.0.3"
+                },
+                "string_decoder": {
+                  "version": "0.10.31",
+                  "resolved": "https://registry.npmjs.org/string_decoder/-/string_decoder-0.10.31.tgz",
+                  "from": "string_decoder@0.10.31"
+                },
+                "util-deprecate": {
+                  "version": "1.0.1",
+                  "resolved": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.1.tgz",
+                  "from": "util-deprecate@1.0.1"
+                }
+              }
+            }
+          }
+        },
+        "underscore": {
+          "version": "1.8.3",
+          "resolved": "https://registry.npmjs.org/underscore/-/underscore-1.8.3.tgz",
+          "from": "underscore@1.8.3"
+        }
+      }
+    }
+  }
+}

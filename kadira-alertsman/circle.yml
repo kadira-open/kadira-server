@@ -1,0 +1,10 @@
+machine:
+  environment:
+    APP_TEST_DB_URL: "mongodb://127.0.0.1:8000/apm_test"
+    APP_TEST_DB_OPLOG_URL: "mongodb://127.0.0.1:8000/apm_test"
+
+database:
+  override:
+    - sudo mkdir -p /data/db
+    - sudo mongod --port 8000 --replSet testing --fork --syslog
+    - mongo --port 8000 --eval "JSON.stringify(rs.initiate())"

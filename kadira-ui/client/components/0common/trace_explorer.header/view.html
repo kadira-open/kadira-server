@@ -1,0 +1,13 @@
+<template name="trace_explorer.header">
+    <div class="client-trace-occurred">
+      <div><strong> Occurred on </strong>{{state$prettifyDate state$startTime}}</div>
+    </div>
+
+    <p>{{state$name}}</p>
+    <p>
+      {{state$hostName}}
+    </p>
+    <div class="server-error-title">
+      {{state$title}}
+    </div>
+</template>

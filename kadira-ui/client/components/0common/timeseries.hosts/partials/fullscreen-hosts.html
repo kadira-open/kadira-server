@@ -1,0 +1,12 @@
+<template name="fullscreenHosts">
+  <div>
+    <div class="hosts-table">
+      {{>render component="react" 
+        class="TimeSeriesSingle.HostsList"
+        fullscreenDataMapFn=stateFn$fullscreenDataMap
+        activePointFn=stateFn$activePoint
+        activeSeriesFn=stateFn$activeSeries
+      }}
+    </div>
+  </div>
+</template>

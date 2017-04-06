@@ -1,0 +1,26 @@
+<template name="traceExplorer.server">
+
+  {{#with state$trace}}
+    {{#if state$usingOldKadiraVerion type trace.isEventsProcessed}}
+      <p class="alert alert-danger">It seems you are using an outdated version of Kadira. Please update your Kadira Package </p>
+    {{else}}
+      {{> 
+        render component="trace_explorer.header" 
+        traceFn=stateFn$trace 
+        isErrorFn=stateFn$isError
+        traceTypes=state$traceTypes
+      }}
+      <div style="position: relative;">
+        <div class="method-exp-line"></div>
+          <ul class="events">
+            {{#each state$eventsArray}}
+              {{>UI.dynamic template=templateName data=this}}
+            {{/each}}
+          </ul>
+        <div class="clearfix"> </div>
+      </div>
+    {{/if}}
+
+  {{/with}}
+
+</template>

@@ -1,0 +1,47 @@
+.filter {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #EEEEEE;
+}
+
+.filter .filter-title {
+  font-weight: 600;
+  color: #777;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.filter .filter-title a {
+  padding-left: 10px;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.filter .filter-caption{
+  margin: 0 10px 0 4px;
+}
+
+.event-stream .event-item .show-info {
+  display: none;
+  z-index: 9999;
+  color: #2BB5C4; 
+  padding: 2px 4px;
+}
+
+.event-stream .selected-item .show-info {
+  display: block;
+}
+
+#toggle-filters {
+  border: 1px solid #D89BFD;
+  background-color: #FDF2FF;
+  outline: 0;
+}
+
+#toggle-mode {
+  margin-right: 5px;
+  outline: 0;
+  background-color: #4C4C4C;
+  color: #fff;
+}

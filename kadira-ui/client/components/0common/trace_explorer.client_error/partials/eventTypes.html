@@ -1,0 +1,63 @@
+<template name="error_event_methodCall">
+    Method call to "{{name}}"
+</template>
+
+<template name="error_event_meteorSubscribe">
+    Subscribe to "{{name}}"
+</template>
+
+<template name="error_event_mongoObserve">
+    Observe "{{collection}}" with "{{callbackType}}" callback
+</template>
+
+<template name="error_event_mongoObserveChanges">
+    ObserveChanges "{{collection}}" with "{{callbackType}}" callback
+</template>
+
+<template name="error_event_mongoFetch">
+    Cursor.fetch on "{{collection}}"
+</template>
+
+<template name="error_event_mongoForEach">
+    Cursor.forEach on "{{collection}}"
+</template>
+
+<template name="error_event_mongoMap">
+    Cursor.map on "{{collection}}"
+</template>
+
+<template name="error_event_setTimeout">
+    setTimeout(function, {{timeout}})
+</template>
+
+<template name="error_event_setInterval">
+    setInterval(function, {{timeout}})
+</template>
+
+<template name="error_event_templateHelper">
+    Used template helper "{{template}}.{{name}}"
+</template>
+
+<template name="error_event_globalHelper">
+    Used global helper "{{name}}"
+</template>
+
+<template name="error_event_default">
+    {{type}}
+</template>
+
+<template name="error_event_templateRendered">
+  Rendering template <em>"{{template}}"</em>
+</template>
+
+<template name="error_event_addEventListener">
+  Registering an event <em>"{{event}}"</em> for <em>"{{state$elementName this}}"</em>
+</template>
+
+<template name="error_event_sessionSet">
+  Update session variable "{{key}}"
+</template>
+
+<template name="error_event_ironRouterHook">
+    IronRouter hook "{{hook}}"
+</template>

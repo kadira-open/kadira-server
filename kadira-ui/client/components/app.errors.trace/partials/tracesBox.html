@@ -1,0 +1,29 @@
+<template name="tracesBox">
+  <div class="traces-box">
+    {{#render component="loading" isLoadingFn=stateFn$isTracesLoading}}
+    {{#if state$selectedTime}}
+      {{#if state$selectedTraces}}
+        <ul class="list-group">
+          {{#each state$selectedTraces}}
+            <li class="list-group-item">
+              <div><small></small></div>
+              <strong>[{{type}}] {{name}}</strong>
+              <div>
+                {{#each samples}}
+                  <a href="#" class="btn btn-danger btn-sm show-trace-explorer">{{time}}</a>
+                {{/each}}
+              </div>
+              <div class="clearfix"></div>
+            </li>
+          {{/each}}
+        </ul>
+      {{else}}
+        <h4 style="color: #7E7E7E;" class="empty"><small><span class="glyphicon glyphicon-exclamation-sign"></span> No Traces Found</small></h4>
+      {{/if}}
+      <div class="clearfix"></div>
+    {{else}}
+      <h4 style="color: #7E7E7E;" class="empty"><small><span class="glyphicon glyphicon-exclamation-sign"></span> Please click on a point in the chart to inspect traced errors.</small></h4>
+    {{/if}}
+    {{/render}}
+  </div>
+</template>

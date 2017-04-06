@@ -1,0 +1,86 @@
+<template name="header">
+  {{#if state$canShowAdminNotice}}
+    <div id="indicate-admin">
+      {{i18n 'app.viewing_app_as_admin'}}
+    </div>
+  {{/if}}
+  <nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      {{#if state$isKadiraDebug}}
+        <a id="kadira-logo" class="navbar-brand" href="https://ui.kadira.io" target="_blank">
+          <img src="/images/kadira-logo-small.png" />
+        </a>
+      {{else}}
+        <!-- <a id="kadira-logo" class="navbar-brand" href="/">Kadira</a> -->
+        <a id="kadira-logo" class="navbar-brand" href="/">
+          <img src="/images/kadira-logo-small.png" />
+        </a>
+      {{/if}}
+    </div>
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    {{#unless state$isKadiraDebug}}
+      <div class="collapse navbar-collapse" id="main-navbar">
+        {{#if state$isSignedIn}}
+          {{> render component="apps.switcher"}}
+
+          <ul class="nav navbar-nav">
+            {{#if state$canShowSeetingsTab}}
+              {{> render component="app.settings"}}
+            {{/if}}
+          </ul>
+
+          <ul class="nav navbar-nav">
+            {{#if state$canShowShareApp}}
+              {{> render component="app.share"}}
+            {{/if}}
+          </ul>
+
+          <ul class="nav navbar-nav">
+            {{#if state$canShowAlertsNav}}
+              {{> render component="app.alerts"}}
+            {{/if}}
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            {{> loginButtons align="right" }}
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="/account/billing" id="my-account">
+                <span class="glyphicon glyphicon-user"></span> My Account
+              </a>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="#" id="support-link" target="_blank">
+                <span class="glyphicon glyphicon-comment"></span> Support
+              </a>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="https://kadira.io/academy" id="academy-link" target="_blank">
+                <span class="glyphicon glyphicon-book"></span> Academy
+              </a>
+            </li>
+          </ul>
+
+        {{/if}}
+
+      </div>
+    {{/unless}}
+  </nav>
+</template>

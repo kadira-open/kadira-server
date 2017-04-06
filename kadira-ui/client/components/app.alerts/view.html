@@ -1,0 +1,30 @@
+<template name="app.alerts">
+  <li>
+    <a href="#" id="app-alerts"> <span class="glyphicon glyphicon-bullhorn"></span>{{i18n "common.alerts"}} </a>
+  </li>
+
+  {{#render component="modal"
+    id="app-alerts-dialog"
+    titleFn=stateFn$dialogTitle
+    canShowFn=stateFn$canShow
+    onClose=action$closeDialog
+  }}
+    {{#if state$listingMode}}
+      {{>render component="app.alerts.list"
+          mode=state$mode
+          onClickCreateNew=action$showEditor
+          onToggleEnable=action$toggleEnable
+          onDeleteAlert=action$deleteAlert
+      }}
+    {{else}}
+      {{>render component="app.alerts.editor"
+          onCreateNewAlert=action$createAlert
+          onUpdateAlert=action$updateAlert
+          onCancel=action$showList
+          mode=state$mode
+          alertId=state$alertId
+          forceCreateMode=state$forceCreateMode
+      }}
+    {{/if}}
+  {{/render}}
+</template>

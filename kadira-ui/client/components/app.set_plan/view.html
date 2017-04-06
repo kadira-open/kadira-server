@@ -1,0 +1,31 @@
+<template name="app.setPlan">
+  <div class="btn-group" data-toggle="buttons">
+    <label class="btn btn-default {{#if state$isCurrentPricingType 'free'}}active{{/if}} btn-sm">
+      <input autocomplete="off" type="radio" name="app-pricing-type" value="free" checked="{{state$isCurrentPricingType 'free'}}">Free
+    </label>
+    <label class="btn btn-default btn-sm {{#if state$isCurrentPricingType 'paid'}}active{{/if}}">
+      <input autocomplete="off" type="radio" name="app-pricing-type" value="paid" checked="{{state$isCurrentPricingType 'paid'}}">Paid
+    </label>
+  </div>
+  <div>
+
+  {{#if state$canShowUpgradeOptions}}
+    <br />
+    <div class="btn-group">
+      <p class="plan-update-info">
+        Upgrade from Free plan to:
+      </p>
+      {{>
+        render component="dropdown" id="plan"
+        dataFn=stateFn$plans
+        onSelect=action$setSelectedUserPlan
+      }}
+      <button id="upgrade-plan" class="btn btn-primary btn-sm" data-loading-text="Loading ...">Upgrade plan</button>
+    </div>
+    <div class="learn-more
+    ">
+    <a href="/account/plans">LEARN MORE</a>
+    </div>
+  {{/if}}
+  </div>
+</template>

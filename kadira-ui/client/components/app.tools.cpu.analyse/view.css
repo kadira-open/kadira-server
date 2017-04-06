@@ -1,0 +1,40 @@
+#pf-cpu-paths {
+  padding: 5px;
+}
+
+#pf-cpu-paths .pf-select-path {
+  border-right: #DFDFDF 1px solid;
+  padding: 0 10px;
+}
+
+#pf-function-info {
+  list-style: none;
+  margin-top: 10px;
+  background-color: #E8FFEA;
+  border: 1px solid #E3E3E3;
+  padding: 5px;
+  color: #555;
+  overflow: auto;
+}
+
+#em-learn-more-top-link {
+  background-color: #709838;
+  border-color: #FFFFFF;
+  border-radius: 4px;
+}
+
+#em-learn-more-top-link a {
+  color: #fff;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.pf-sub-title {
+  font-size: 14px;
+  font-weight: normal;
+  margin-top: 10px;
+}
+
+#pf-breakdown-chart .list-group{
+  overflow: auto;
+}

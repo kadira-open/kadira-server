@@ -1,0 +1,14 @@
+<template name="hbar.commonValues">
+  {{#render component="loading" isLoadingFn=stateFn$isChartLoading}}
+    {{>
+      render component="hbar"
+      dataFn=stateFn$chartData
+      sortOptionsFn=stateFn$sortOptions
+      selectedItemFn=stateFn$selectedItem
+      sortedItemFn=stateFn$sortedItem
+      onSort=action$changeSortOrder
+      onSelect=action$changeSelection
+      itemTemplate="commonValueItemTemplate"
+    }}
+  {{/render}}
+</template>

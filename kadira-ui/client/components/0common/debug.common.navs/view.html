@@ -1,0 +1,7 @@
+<template name="debug.common.navs">
+  <ul class="nav nav-pills navigation">
+    {{#each state$navs}}
+      <li role="presentation" class="pills-sm {{id}} {{#if state$isActiveNav id}}active{{/if}}"><a href="#{{id}}" data-nav="{{id}}">{{label}}</a></li>       
+    {{/each}}
+  </ul>
+</template>

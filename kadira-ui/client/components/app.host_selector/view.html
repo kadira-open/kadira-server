@@ -1,0 +1,17 @@
+<template name="app.hostSelector">
+  <div class="btn-group dropdown">
+    <button id="hosts" type="button" class="btn btn-info btn-sm dropdown-toggle dropdown-title" data-toggle="dropdown">
+      {{state$selectedHost}}
+    </button>
+    <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
+      <span class="caret"></span>
+    </button>
+    {{#if state$hosts}}
+      <ul class="dropdown-menu pull-right" role="menu">
+        {{#each state$hosts}}
+          <li class="{{#if state$isSelected this.value}}active{{/if}} {{value}}"><a href="#" class="drop-down-item">{{value}}</a></li>
+        {{/each}}
+      </ul>
+    {{/if}}
+  </div>
+</template>

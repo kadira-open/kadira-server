@@ -1,0 +1,24 @@
+<template name="hbar.errorItemTemplate">
+  <div class="list-group-item {{#if state$isSelected id}}selected{{/if}}">
+    <span class="pull-left error-status-icon">
+      <span class="label {{status}} error-status-label">
+        {{status}}
+      </span>
+    </span>
+    <div class="hbar-item">
+      <span class=" pull-right">
+        {{lastSeenTime}}
+        <span class="badge alert-danger">
+        {{count}}
+        </span>
+      </span>
+      [{{type}}] {{errorName}}
+      {{#unless lastSeenTime}}
+        <div class="progress ">
+          <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{pCount}}%;"></div>
+        </div>
+      {{/unless}}
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</template>

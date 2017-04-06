@@ -1,0 +1,181 @@
+<template name="debug">
+  <div id="kadira-debug">
+    <input type="file" name="file-load-session" id="file-load-session">
+
+    {{#if state$debugEntry}}
+      <div class="kd-navs">
+        {{> render component="debug.common.navs" navs=state$navs}}
+        <a class="support-link-top pull-right" target="_blank"
+          href="https://kadira.io/platform/kadira-debug/overview">
+          <span class="glyphicon glyphicon-book"></span> &nbsp;Read the Docs
+        </a>
+      </div>
+
+      {{#if state$isCurrentNav 'debug'}}
+        <div id="debug-entry">
+          <img class="kd-logo" src="images/kadira-debug-logo.png" />
+
+          <form id="debug-control" class="form-inline">
+            <input
+              type="text" id='debug-app-url' class="form-control simplebox"
+              value="{{state$currentUrl}}"
+              placeholder="Enter your Meteor app URL"
+              autocomplete="off"
+            />
+
+            <div class="btn-group">
+              <button type="submit" class="btn btn-sm no-bg btn-connect">Connect</button>
+              <button
+                type="button"
+                class="btn btn-sm no-bg dropdown-toggle"
+                style="height: 40px;"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="btn-load" href="#">Load from a File..</a></li>
+              </ul>
+            </div>
+          </form>
+
+          {{#if state$statusMessage}}
+            <p class="status-msg">{{state$statusMessage}}</p>
+          {{else}}
+            <p class="status-msg">{{state$connStatus}}</p>
+          {{/if}}
+
+          {{#if state$debugUrl}}
+            <div class="debug-url col-md-12">
+              <a href="{{state$debugUrl}}" class="reset-token" target="_blank">{{state$debugUrl}}</a>
+            </div>
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{#if state$isCurrentNav 'cpu-profiler'}}
+        {{> render component="debug.cpuProfiler"}}
+      {{/if}}
+
+    {{else}}
+      <div class="row kd-header" id="kd-header">
+        <div class="col-md-12">
+          <form id="debug-control" class="form-inline">
+            <input
+              type="text" id='debug-app-url'
+              class="form-control simplebox"
+              value="{{state$connUrl}}"
+              placeholder="Enter your Meteor app URL"
+              autocomplete="off"
+            />
+
+            <div class="btn-group">
+              <button type="submit" class="btn btn-sm no-bg btn-connect">Connect</button>
+              <button
+                type="button"
+                class="btn btn-sm no-bg dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="btn-load" href="#">Load from a File..</a></li>
+              </ul>
+            </div>
+
+            <span>
+              {{>render
+                component="dropdown"
+                dataFn=stateFn$sessions
+                selectedFn=stateFn$currentSession
+                onSelect=action$changeSession
+              }}
+            </span>
+
+            {{#if state$saveEnabled}}
+              <a href="" role="button" class="btn btn-sm no-bg btn-save">
+                  <span class="glyphicon glyphicon-floppy-disk"></span>
+              </a>
+
+              <a href="data:application/xml;charset=utf-8,{{state$stringifiedSessionData}}"
+                download="{{state$sessionFileName}}.json" class="a-save">&nbsp;</a>
+            {{/if}}
+
+            {{#if state$debugUrl}}
+              {{> render component="clipboardButton"
+                glyphicon="glyphicon glyphicon-share"
+                cssClasses="btn btn-sm no-bg btn-share"
+                text=state$shareUrl
+                label="Debug URL"
+              }}
+            {{/if}}
+
+            <button class="btn btn-sm no-bg btn-reset">Reset</button>
+            <button class="btn btn-sm no-bg btn-enter-full-screen pull-right">
+              <span class="glyphicon glyphicon-fullscreen"></span>
+            </button>
+            <a class="support-link" target="_blank"
+              href="https://kadira.io/platform/kadira-debug/overview">
+              <span class="glyphicon glyphicon-book"></span> &nbsp;Read the Docs
+            </a>
+          </form>
+        </div>
+
+        {{#if state$debugUrl}}
+          <div class="debug-url col-md-12">
+            <p>
+              Click following link to start a new remote debug session: <br/>
+              <a href="{{state$debugUrl}}" class="reset-token" target="_blank">{{state$debugUrl}}</a>
+            </p>
+          </div>
+        {{/if}}
+        <hr/>
+      </div>
+
+      <div id="container">
+        <div class="row" id="kd-container">
+          <div class="col-md-12">
+            <button align="right" class="btn btn-sm no-bg btn-exit-full-screen pull-right">Exit Full Screen</button>
+
+            {{> render
+              component="debug.root"
+              debugStoreFn=stateFn$debugStoreInstance
+              currentSessionFn=stateFn$activeSession
+              currentUrl=state$currentUrl
+              navigations=state$navigations
+              offlineSession=state$offlineSession
+            }}
+          </div>
+        </div>
+      </div>
+    {{/if}}
+
+    {{#render component="modal"
+      id="authkey-dialog"
+      modalClass="modal-sm"
+      titleFn=stateFn$authKeyDialogTitle
+      canShowFn=stateFn$canShowAuthKeyDialog
+      onClose=action$closeAuthKeyDialog
+    }}
+      <form class="auth-key-dialog">
+        <input
+          type="password" id="debug-auth-key" class="form-control simplebox"
+          value=""
+          placeholder="Enter your Debug Auth Key.."
+          autocomplete="off"
+          autofocus
+        />
+        <p class="debug-auth-key-help"><a href="http://support.kadira.io/knowledgebase/articles/808611" target="_blank">What's Debug Auth Key?</a></p>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">{{i18n "common.close"}}</button>
+          <button type="submit" class="btn btn-default btn-sm btn-connect-with-auth-key">Connect</button>
+        </div>
+      </form>
+    {{/render}}
+  </div>
+</template>

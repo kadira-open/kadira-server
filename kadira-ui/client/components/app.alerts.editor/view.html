@@ -1,0 +1,80 @@
+<template name="app.alerts.editor">
+  <div id="alert-editor" class="alerts-dialog">
+    <form id="alert-editor-form" class="form-horizontal">
+      <fieldset>
+        <input type="hidden" name="alert-id" id="alert-id" value="{{state$alertInfo.alertId}}">
+        <legend>IF</legend>
+        {{>render component="app.alerts.editor.ruleA" alertInfo=state$alertInfo}}
+        {{>render component="app.alerts.editor.ruleB" alertInfo=state$alertInfo}}
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="">
+              <select id="alrt-host" name="alrt-host" class="form-control">
+                {{#each state$HOST}}
+                  <option value="{{value}}" data-metric="{{metric}}" selected="{{selected}}">{{key}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <br/>
+        <legend>THEN</legend>
+
+        <div class="row">
+          <div class="col-md-6">
+            <label class="control-label alrt-email" for="alrt-email">Send Email(s)</label>
+            <div class="">
+              <textarea rows="3" id="alrt-email" name="alrt-email" placeholder="Enter one email per line" class="form-control">{{state$alertInfo.emails}}</textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="control-label alrt-webhook" for="alrt-webhook">Call Webhook(s)
+              {{>showHelp 'alerts-webhook-help'}}
+            </label>
+
+            <a href="http://support.kadira.io/knowledgebase/articles/785625" target="_blank" class="slack-webhook-label pull-right">Slack Integration?</a>
+
+            <div class="">
+              <textarea rows="3" id="alrt-webhook" name="alrt-webhook" placeholder="Enter one webhook URL per line" class="form-control">{{state$alertInfo.webhooks}}</textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <label class="control-label" for="alrt-name">Name your alert</label>
+            <div class="">
+              <input id="alrt-name" name="alrt-name" type="text" placeholder="Enter Alert Name" value="{{state$alertInfo.name}}" class="form-control input-md" required="">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="action-buttons">
+              {{>render component="loadingButton" 
+                id="alrt-save" 
+                name="alrt-save" 
+                class="btn btn-sm btn-primary" 
+                type="text|icon" 
+                action="submit" 
+                text="Save" 
+                loadingIcon="glyphicon-refresh loading-icon" 
+                loadingFn=stateFn$loading
+              }}
+              {{#if state$showCancelButton}}
+                <button id="alrt-save-cancel" class="btn btn-sm btn-default" type="button">Cancel</button>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">{{i18n "common.close"}}</button>
+  </div>
+</template>

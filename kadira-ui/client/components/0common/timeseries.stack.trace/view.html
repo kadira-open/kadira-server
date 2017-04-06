@@ -1,0 +1,25 @@
+<template name="timeseries.stack.trace">
+  {{>
+    render component="timeseries.stack"
+    metrics="wait,db,http,email,compute,async"
+    labels="wait,db,http,email,compute,async"
+    colors="#7cb5ec,#434348,#4F964A,#f7a35c,#8085e9,#f15c80"
+    metricDataKey="timeseries.responseTimeBreakdown"
+    title="Response Time Breakdown"
+    helperId=state$helperId
+    extraArgsFn=stateFn$extraArgs
+    onChartClick=action$setSelectedTime
+  }}
+
+  {{>
+    render component="restimeDistribution"
+      traceType=state$traceType
+      traceListDataKey=state$traceListDataKey
+      histogramDataKey=state$histogramDataKey
+      selectedTimeFn=stateFn$selectedTime
+      appIdFn=stateFn$appId
+      rangeFn=stateFn$range
+      hostFn=stateFn$host
+      selectionFn=stateFn$selection
+  }}
+</template>

@@ -1,0 +1,84 @@
+<template name="app.dashboard.overview">
+  <div>
+    {{>
+      render component="summaryChart.source"
+      helperId="summary-dashboardOverview"
+      summaryDataKeys="summary.methods,summary.pubsub,summary.system"
+      metrics="resTime,methodResTime,memory,pcpu,sessions"
+      labels="PubSub Res. Time,Method Res. Time,Memory Usage / host,CPU Usage,Sessions / host"
+      formatters=state$summaryFormatters
+    }}
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 chart-wrap">
+      {{>render
+        component="timeseries.hosts"
+        metricDataKey="timeseries.pubsubResTime"
+        metric="resTime"
+        label="response time"
+        title="Pub Sub Response Time(ms)"
+        helperId="timeseries-pubsubResTime"
+        tracing=false
+        color="#9B78D0"
+      }}
+
+      {{>render
+        component="timeseries.hosts"
+        metricDataKey="timeseries.memory"
+        metric="memory"
+        label="Memory Usage"
+        title="Memory Usage / Host (MB)"
+        helperId="timeseries-memory"
+        tracing=false
+        color="#94BC91"
+      }}
+
+      {{>render
+        component="timeseries.hosts"
+        metricDataKey="timeseries.sessions"
+        metric="sessions"
+        label="Total Sessions"
+        title="Total Sessions"
+        helperId="timeseries-sessions"
+        tracing=false
+        color="#D59054"
+      }}
+    </div>
+
+    <div class="col-md-6 chart-wrap">
+      {{>render
+        component="timeseries.hosts"
+        metricDataKey="timeseries.methodResTime"
+        metric="resTime"
+        label="response time"
+        title="Methods Response Time(ms)"
+        helperId="timeseries-methodResTime"
+        tracing=false
+        color="#9B78D0"
+      }}
+
+      {{>render
+        component="timeseries.hosts"
+        metricDataKey="timeseries.pcpu"
+        metric="pcpu"
+        label="CPU Usage"
+        title="CPU Usage (%)"
+        helperId="timeseries-pcpu"
+        tracing=false
+        color="#464B56"
+      }}
+
+      {{>render
+        component="timeseries.hosts"
+        metricDataKey="timeseries.createdObservers"
+        metric="createdObservers"
+        label="Created Observers"
+        title="Created Observers"
+        helperId="timeseries-createdObservers"
+        tracing=false
+        color="#A25A4E"
+      }}
+    </div>
+  </div>
+</template>

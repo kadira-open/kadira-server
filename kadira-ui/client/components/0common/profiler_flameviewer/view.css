@@ -1,0 +1,11 @@
+.selected-function {
+  fill: #F98484;
+}
+
+.flameviewer-container {
+  background-color: #383838;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+  border: 1px solid #ACACAC;
+}

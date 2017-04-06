@@ -1,0 +1,21 @@
+<template name="debug.cpuProfiler">
+  {{#if state$newProfile}}
+    <a href="https://kadira.io/platform/kadira-debug/cpu-profiling" class="help-link" target="_blank">How to take a CPU Profile?</a>
+    <form class="frm-cpu-profiler">
+      <input class="pf-file-upload-btn" name="pf-file-upload-btn" type="file" >
+    </form>
+    <div class="dropzone" id="upload-profile">
+      <p>Drop the profiler here or click to load</p>
+    </div>
+  {{/if}}
+
+  {{#if state$profiler}}
+    <h4 class="pf-analyser-title">{{state$profileName}}</h4>
+    <button class="reset-cpu-profiler pull-right btn btn-primary btn-sm">Load a New Profile</button>
+    <div class="clearfix"></div>
+    <hr/>
+    {{> render component="profileAnalyser" 
+      profile=stateFn$profile
+    }}
+  {{/if}}
+</template>

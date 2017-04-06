@@ -1,0 +1,154 @@
+.trace-explorer {
+  border: 1px solid #dddddd;
+  padding: 15px;
+  min-height: 100px;
+
+  .share-this-link {
+    border: 1px solid #DFDFDF;
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  .share-this-link-caption {
+    font-size: 11px;
+    font-weight: 600;
+    padding-right: 4px;
+    line-height: 1.8;
+    border-right: 1px solid #DFDFDF;
+  }
+
+  .view-details{
+    text-transform: uppercase;
+  }
+  a{
+    color: #428bca;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+    padding-left: 5px;
+  }
+  ul{
+    padding: 0;
+  }
+
+  ol li {
+    line-height: 22px;
+  }
+
+  .highlight {
+    margin: 6px 5px 0 50px;
+    border: 1px dashed #C2C2C2;
+    padding: 10px;
+    background-color: rgb(254, 223, 223);
+    ul {
+      list-style: none;
+    }
+  }
+
+  .details{
+    line-height: 14px;
+    border: 1px dashed #C2C2C2;
+    padding: 10px;
+    background-color: #F7F7F7;
+    color: #4E4E4E;
+    overflow: auto;
+    display:none;
+    margin: 0 5px 0 50px;
+    ul li{
+      list-style: none;
+    }
+  }
+  .method-exp.error {
+    background: white;
+    position: relative;
+    z-index: 300;
+    padding:0;
+    .details{
+      display: block;
+    }
+  }
+
+  .circle{
+    height: 50px;
+    border-radius: 25px;
+    z-index: 100;
+    position: relative;
+  }
+
+  .method-exp-line{
+    border-left: 2px solid rgb(197, 197, 197);
+    display: table-cell;
+    position: absolute;
+    left: 25px;
+    bottom: 25px;
+    top: 17px;
+  }
+
+  .time-spent {
+    font-weight: 600;
+    color: #F87979;
+    font-style: italic;
+  }
+
+  .server-error-title, .client-error-title {
+    line-height: 25px;
+    color: #DD615B;
+    overflow: auto;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  .client-trace-occurred {
+    margin-bottom: 12px;
+  }
+
+  .method-exp{
+    padding: 5px 0;
+    list-style: none;
+    .circle{
+      border-radius: 15px;
+      height: 30px;
+      width: 30px;
+      background-color: black;
+      float: left;
+      margin: 0 10px;
+      z-index: 100;
+      position: relative;
+    }
+    .circle-start{
+      background-color: rgb(93, 185, 236);
+    }
+    .circle-wait{
+      background-color: rgb(236, 208, 93);
+    }
+    .circle-http{
+      background-color: rgb(255, 162, 23);
+    }
+    .circle-db{
+      background-color: rgb(184, 64, 179);
+    }
+    .circle-email{
+      background-color: rgb(236, 208, 93);
+    }
+    .circle-async{
+      background-color: rgb(93, 127, 236);
+    }
+    .circle-compute{
+      border-radius: 0;
+      height: 10px;
+      width: 10px;
+      background-color: rgb(221, 129, 129);
+      float: left;
+      margin: 11px 20px;
+      z-index: 100;
+      position: relative;
+    }
+    .circle-complete{
+      background-color: rgb(100, 182, 107);
+    }
+    .circle-error{
+      background-color: rgb(255, 79, 55);
+    }
+  }
+}

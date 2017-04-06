@@ -1,0 +1,35 @@
+<template name="debug.eventStream">
+  <div>
+    <h4 class="pull-left">Event Stream {{>showHelp 'kd-event-stream'}}</h4>
+    <button id="toggle-filters" class="pull-right btn btn-xs btn-default">
+      {{toggleFiltersName}}
+    </button>
+    <!-- <button id="toggle-mode" class="pull-right btn btn-xs btn-default ">
+      {{toggleModeName}}
+    </button> -->
+    <div class="clearfix"></div>
+  </div>
+  {{#if state$showFilters}}
+    <div class="filter">
+      <div class="filter-title">
+        <div class="pull-left">
+          Filter events by following types:{{>showHelp 'kd-event-stream-filters'}}
+        </div>
+        <a class="pull-right select-all">SELECT ALL</a> 
+        <a class="pull-right unselect-all">UNSELECT ALL</a>
+        <div class="clearfix"></div>
+      </div>
+      <div class="filter-selectors">
+        {{#each state$eventFilters}}
+          <input class="filter-type" type="checkbox" value="{{key}}" {{checked}}> 
+          <span class="filter-caption">{{caption}}</span>
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+  <div class="event-stream">
+    {{#each state$eventStream}}
+      {{>render partial="kadiraDebug.eventItem"}}
+    {{/each}}
+  </div>
+</template>

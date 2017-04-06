@@ -1,0 +1,13 @@
+<template name="hbar.breakdown">
+  {{#render component="loading" isLoadingFn=stateFn$isChartLoading}}
+    {{>
+      render component="hbar"
+      dataFn=stateFn$chartData
+      sortOptionsFn=stateFn$sortOptions
+      selectedItemFn=stateFn$selectedItem
+      sortedItemFn=stateFn$sortedItem
+      onSort=action$changeSortOrder
+      onSelect=action$changeSelection
+    }}
+  {{/render}}
+</template>

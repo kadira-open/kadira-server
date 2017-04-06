@@ -1,0 +1,27 @@
+<template name="app.dashboard.live_queries">
+  <div>
+    {{>
+      render component="summaryChart.source"
+      summaryDataKeys="summary.pubsub,summary.liveQueries"
+      metrics="polledDocuments,liveUpdates,observerReuse,lifeTime"
+      labels="Fetched Documents, Live Updates, Observer Reuse Ratio, Observer Lifetime"
+      formatters=state$summaryFormatters
+      helperId="summary-liveQueries"
+    }}
+  </div>
+  <div class="row">
+    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+      <h4>Publications Breakdown {{>showHelp 'livequery-pub-breakdown'}}</h4>
+      {{>
+        render component="hbar.commonValues"
+        metricDataKey="breakdown.liveQueries"
+        sortOptionsFn=stateFn$breakDownSortOptions
+        commonValueLabelFn=stateFn$breakdownCommonValueLabel
+      }}
+    </div>
+
+    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+      {{> render component="app.dashboard.live_queries.timecharts"}}
+    </div>
+  </div>
+</template>

@@ -1,0 +1,27 @@
+<template name="traceExplorer">
+  <div class="trace-explorer">
+    {{#render component="loading" isLoadingFn=stateFn$isLoading}}
+
+      {{#if state$enableSharing}}
+        {{>
+          render component="shareButton"
+          shareLinkFn=stateFn$shareLink
+          buttonName="URL"
+          className="pull-right"
+        }}
+      {{/if}}
+
+      {{#if state$isClient}}
+        {{>
+          render component="traceExplorer.clientError"
+          traceFn=stateFn$trace
+        }}
+      {{else}}
+        {{>
+          render component="traceExplorer.server"
+          traceFn=stateFn$trace
+        }}
+      {{/if}}
+    {{/render}}
+  </div>
+</template>

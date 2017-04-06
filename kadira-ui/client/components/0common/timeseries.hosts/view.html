@@ -1,0 +1,41 @@
+<template name="timeseries.hosts">
+
+    {{> timeseriesHostsHeader}}
+    {{#render component="loading" isLoadingFn=stateFn$isChartLoading}}
+      {{>
+        render component="timeChart"
+        typeFn=stateFn$chartType
+        color=state$color
+        seriesFn=stateFn$processedChartData
+        onClick=action$setSelectedPoint
+        plotLinesFn=stateFn$plotLines
+        onPointMouseHover=action$setCurrentChartTime
+        onPointMouseOut=action$clearChartTime
+      }}
+    {{/render}}
+  
+  {{#if state$isFullScreen}}
+    <div class="time-chart-wrap full-view">
+      <span class="max-height-slider" data-slider-orientation="vertical"></span>
+      {{> timeseriesHostsHeader}}
+      {{#render component="loading" isLoadingFn=stateFn$isChartLoading}}
+        {{>
+          render component="timeChart"
+          typeFn=stateFn$chartType
+          color=state$color
+          seriesFn=stateFn$processedChartData
+          onClick=action$setSelectedPoint
+          onPointMouseHover=action$setHoveredPoint
+          onPointMouseOut=action$clearHoveredPoint
+          onSeriesMouseHover=action$setHoveredSeries
+          onSeriesMouseOut=action$clearHoveredSeries
+          plotLinesFn=stateFn$fullScreenPlotLines
+          isTooltipsDisabledFn=stateFn$isFullScreen
+          maxValueFn=stateFn$maxValue
+        }}
+      {{/render}}
+      {{> fullscreenHosts}}
+
+    </div>
+  {{/if}}
+</template>

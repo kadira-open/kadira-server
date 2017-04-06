@@ -1,0 +1,16 @@
+<template name="app.tools">
+  <div id="section-nav">
+    {{>render component="navigation" id="tools" navs=state$navs}}
+  </div>
+
+  <div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="kadira-profiler-package-info" class="alert alert-info">
+          {{{i18n "tools.install_kadira_profiler_msg"}}}
+        </div>
+      </div>
+    </div>
+    {{> render component="app.tools.cpu"}}
+  </div>
+</template>

@@ -1,0 +1,18 @@
+<template name="timeseries.stack">
+  <h4>
+    {{state$title}}
+    {{#if state$helperId}}
+      {{>showHelp state$helperId}}
+    {{/if}}
+  </h4>
+  {{#render component="loading" isLoadingFn=stateFn$isChartLoading}}
+    {{>
+      render component="timeChart"
+      type="stack"
+      seriesFn=stateFn$chartData
+      onClick=action$notifySelectedTimeChange
+      plotLinesFn=stateFn$plotLines
+      onPointMouseHover=action$setCurrentChartTime
+    }}
+  {{/render}}
+</template>

@@ -1,0 +1,14 @@
+<template name="app.settings">
+  <li>
+    <a href="#" id="app-settings"> <span class="glyphicon glyphicon-cog"></span>{{i18n "common.settings"}} </a>
+  </li>
+
+  {{#render component="modal"
+    id="app-settings-dialog"
+    titleFn=stateFn$dialogTitle
+    canShowFn=stateFn$canShow
+    onClose=action$closeDialog
+  }}
+    {{>render component="app.settings.dialog"}}
+  {{/render}}
+</template>

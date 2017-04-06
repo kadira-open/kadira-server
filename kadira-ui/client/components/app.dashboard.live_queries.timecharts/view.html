@@ -1,0 +1,137 @@
+<template name="app.dashboard.live_queries.timecharts">
+ <ul class="nav nav-tabs" id="detailed-view-tabs">
+    <li class="{{#if state$isActiveTab 'documents'}}active{{/if}}"><a href="#tab-documents" data-toggle="tab" data-tab='documents' class='tab'>{{i18n "app.documents"}}</a></li>
+    <li class="{{#if state$isActiveTab 'observers'}}active{{/if}}"><a href="#tab-observers" data-toggle="tab" data-tab='observers' class='tab'>{{i18n "app.observer_info"}}</a></li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane {{#if state$isActiveTab 'documents'}}active{{/if}}" id="tab-documents">
+      <div id="documents-learn-more">
+        <a href="https://kadira.io/academy/meteor-performance-101/content/optimizing-your-app-for-live-queries" class="btn pull-right" target="_blank">Learn how to optimize your app for Live Queries</a>
+      </div>
+      <div class="breakdown-chart">
+        {{>
+          render component="timeseries.single"
+          metricDataKey="timeseries.polledDocuments"
+          metric="polledDocuments"
+          label="Fetched Documents"
+          title="Fetched Documents"
+          helperId="timeseries-fetched-document-count"
+          color="#8BA556"
+          extraArgsFn=stateFn$timeseriesArgs
+          helperId="polled-documents"
+        }}
+      </div>
+
+      <div class="breakdown-chart">
+        {{>
+          render component="timeseries.stack"
+          metricDataKey="timeseries.liveUpdates"
+          metrics="initiallyAddedDocuments,liveAddedDocuments,liveChangedDocuments,liveRemovedDocuments"
+          labels="Added(Initially),Added,Changed,Removed"
+          colors="#F2A128,#8BC577,#4BABD6,#FF7B7B"
+          title="Observer Changes"
+          extraArgsFn=stateFn$timeseriesArgs
+          helperId="observer-changes"
+        }}
+      </div>
+
+      <div class="breakdown-chart">
+        {{>
+          render component="timeseries.stack"
+          metricDataKey="timeseries.oplogNotifications"
+          metrics="oplogInsertedDocuments,oplogUpdatedDocuments,oplogDeletedDocuments"
+          labels="Inserted,Updated,Deleted"
+          colors="#8BC577,#4BABD6,#FF7B7B"
+          title="Oplog Notifications"
+          extraArgsFn=stateFn$timeseriesArgs
+          helperId="oplog-notifications"
+        }}
+      </div>
+      <div class="breakdown-chart">
+        {{>
+          render component="timeseries.multi"
+          axisType="multi"
+          metrics="subs,pcpu"
+          labels="Sub Rate,Cpu Usage"
+          colors="#DF7B4C,#464B56"
+          metricDataKeys="timeseries.subUnsubRates,timeseries.pcpu"
+          title="Sub Rate/Cpu Usage"
+
+          extraArgsFn=stateFn$timeseriesArgs
+        }}
+      </div>
+      <div class="breakdown-chart">
+        {{>
+          render component="timeseries.single"
+          metric="activeSubs"
+          label="Active Subs"
+          color="#408787"
+          metricDataKey="timeseries.activeSubsLifeTime"
+          title="Active Subs"
+          onTooltipFormat=action$renderLifetimeTooltip
+          extraArgsFn=stateFn$timeseriesArgs
+          helperId="active-subs"
+        }}
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane {{#if state$isActiveTab 'observers'}}active{{/if}}" id="tab-observers">
+      <div id="observers-learn-more">
+        <a href="https://kadira.io/academy/know-your-observers/" class="btn pull-right" target="_blank">Learn how to use Observer Info</a>
+      </div>
+      <div class="breakdown-chart">
+        {{>
+          render component="timeseries.multi"
+          axisType="single"
+          metrics="createdObservers,deletedObservers"
+          labels="Observers Created,Observers Deleted"
+          colors="#852415,#52AD86"
+          metricDataKey="timeseries.createdDeletedObservers"
+          title="Created/Deleted Observers"
+          extraArgsFn=stateFn$timeseriesArgs
+        }}
+      </div>
+
+      <div class="breakdown-chart">
+        {{>
+          render component="timeseries.multi"
+          axisType="single"
+          metrics="totalObserverHandlers,cachedObservers"
+          labels="Total Observer Handlers,Reused Observers"
+          colors="#95006C,#148B8B"
+          metricDataKey="timeseries.totalReusedObservers"
+          title="Total/Reused Observer Handlers"
+          helperId="total-reused-observer-handlers"
+
+          extraArgsFn=stateFn$timeseriesArgs
+        }}
+      </div>
+
+      <div class="breakdown-chart">
+        {{>
+          render component="timeseries.single"
+          metricDataKey="timeseries.observerLifeTime"
+          metric="observerLifetime"
+          label="Observer Life time"
+          title="Observer Life time"
+          color="#DF7B4C"
+          onTooltipFormat=action$renderLifetimeTooltip
+          extraArgsFn=stateFn$timeseriesArgs
+          helperId="livequery-life-time"
+        }}
+      </div>
+      <div class="breakdown-chart">
+        {{>
+          render component="timeseries.multi"
+          axisType="multi"
+          metrics="subs,pcpu"
+          labels="Sub Rate,Cpu Usage"
+          colors="#DF7B4C,#464B56"
+          metricDataKeys="timeseries.subUnsubRates,timeseries.pcpu"
+          title="Sub Rate/Cpu Usage"
+
+          extraArgsFn=stateFn$timeseriesArgs
+        }}
+      </div>
+    </div>
+  </div>
+</template>

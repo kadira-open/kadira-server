@@ -1,0 +1,18 @@
+<template name="dropdown">
+  <div class="btn-group dropdown" id="{{state$elementId}}">
+    <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-title" data-toggle="dropdown">
+      {{state$selectedLabel}}
+    </button>
+    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu pull-right" role="menu">
+      {{#each state$data}}
+        <!-- val-{value} class is added to fix Document.querySelector() issue when classes
+            started with numerics
+        -->
+        <li class="{{#if state$isSelected this.value}}active{{/if}} val-{{value}} {{value}}"><a href="#" class="drop-down-item">{{label}}</a></li>
+      {{/each}}
+    </ul>
+  </div>
+</template>

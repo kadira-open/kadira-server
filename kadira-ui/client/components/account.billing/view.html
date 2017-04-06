@@ -1,0 +1,149 @@
+<template name="account.billing">
+  <div id="template-account-billing" class="account-wrapper">
+    <h4>Credit Card</h4>
+    <div class="row">
+      {{#if state$hasCard}}
+        <div class="col-sm-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <snap class="glyphicon glyphicon-credit-card"></snap>
+              </h3>
+            </div>
+            {{#with state$cardMeta}}
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <th>Number</th>
+                    <td>**** **** **** {{lastFourDigits}}</td>
+                  </tr>
+                  <tr>
+                    <th>Expires</th>
+                    <td>{{expDate}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            {{/with}}
+            <div class="panel-footer">
+              <div class="pull-right">
+                {{>render component="loadingButton"
+                  id="update-card"
+                  name="update-card"
+                  class="btn btn-xs btn-default"
+                  type="text|icon"
+                  text="Update Card"
+                  loadingIcon="glyphicon-refresh loading-icon"
+                  loadingFn=stateFn$updatingCard
+                }}
+
+                {{>render component="loadingButton"
+                  id="remove-card"
+                  name="remove-card"
+                  class="btn btn-xs btn-danger"
+                  type="text|icon"
+                  text="Remove Card"
+                  loadingIcon="glyphicon-refresh loading-icon"
+                  loadingFn=stateFn$removingCard
+                }}
+              </div>
+              <br class="clearfix">
+            </div>
+          </div>
+        </div>
+      {{else}}
+        <div class="col-sm-4">
+          {{>render component="loadingButton"
+            id="add-card"
+            name="add-card"
+            class="btn"
+            type="text|icon"
+            text="Add Credit Card"
+            loadingIcon="glyphicon-refresh loading-icon"
+            loadingFn=stateFn$updatingCard
+          }}
+        </div>
+      {{/if}}
+    </div>
+
+    <hr>
+    <h4>Billing Info</h4>
+    <div class="row billing-info">
+      <div class="col-sm-4">
+        <form id="frm-billing-info">
+            <input id="name" name="name" placeholder="Your Name" class="input name" type="text" pattern="[A-za-z ]+" value="{{state$billingInfo.name}}"> <br>
+            <input id="email" name="email" placeholder="Email" class="input email" type="text" value="{{state$billingInfo.email}}"> <br>
+            <input id="address-line-1" name="address-line-1" placeholder="Address Line 1" class="input address1" type="text" value="{{state$billingInfo.address1}}"> <br>
+            <input id="address-line-2" name="address-line-2" placeholder="Address Line 2" class="input address2" type="text" value="{{state$billingInfo.address2}}"> <br>
+            <input id="city" name="city" placeholder="City" class="input city" type="text" value="{{state$billingInfo.city}}"> <br>
+            <input id="state" name="state" placeholder="State" class="input state" type="text" value="{{state$billingInfo.state}}"> <br>
+            <input id="zip" name="zip" placeholder="Zip Code" class="input zip" type="text" value="{{state$billingInfo.zip}}"> <br>
+            <input id="country" name="country" placeholder="Country" class="input country" type="text" value="{{state$billingInfo.country}}"> <br>
+            <input id="other-info" name="other-info" placeholder="Other Information (Tax Id, etc)" class="input other" type="text" value="{{state$billingInfo.other}}"> <br>
+
+            {{>render component="loadingButton"
+              id="update-billing-info"
+              name="update-billing-info"
+              class="update btn btn-xs btn-warning"
+              type="text|icon"
+              action="submit"
+              text="Update Billing Info"
+              loadingIcon="glyphicon-refresh loading-icon"
+              loadingFn=stateFn$updatingBillingInfo
+            }}
+        </form>
+      </div>
+    </div>
+
+    <hr>
+    <h4>Current Month's Usage</h4>
+    {{#render component="loading" isLoadingFn=stateFn$isChartLoading}}
+      {{#if state$hasCurrentUsage}}
+      <p>Total hosts count from <strong>{{state$currentUsage.startDate}}.</strong> Hosts counter will reset on <strong>{{state$currentUsage.resetDate}}.</strong></p>
+      <div class="progress">
+        <div class="progress-bar progress-bar-{{state$currentUsage.type}}" role="progressbar" aria-valuenow="{{state$currentUsage.total}}" aria-valuemin="0" aria-valuemax="{{state$currentUsage.maximum}}" style="width: {{state$currentUsage.width}}%;">
+          {{state$currentUsage.total}}/{{state$currentUsage.maximum}}
+        </div>
+      </div>
+
+      <div class="row usage-charts">
+        <div class="col-md-4">
+          {{>
+            render component="pieChart"
+            values=stateFn$appBreakdownChart
+          }}
+        </div>
+      </div>
+      {{/if}}
+    {{/render}}
+
+    {{>
+      render component="account.billing.suggest"
+    }}
+
+    {{#if state$perHostBilledApps}}
+    <h4> Per Host Billing Apps </h4>
+      {{#each state$perHostBilledApps}}
+        {{>
+          render component="account.billing.timechartWrapper"
+          yAxisTitle="Hosts"
+          data=data
+          plotLinesFn=stateFn$plotLines
+          appName=name
+          appId=appId
+          endTime=state$endTime
+        }}
+      {{/each}}
+    {{/if}}
+
+    {{#if state$hasCard}}
+      <hr>
+      <h4>Invoice History</h4>
+      {{#render component="loading" isLoadingFn=stateFn$loadingTender}}
+        <div class="row invoice-history">
+          <div data-ih-history="true"></div>
+        </div>
+      {{/render}}
+    {{/if}}
+
+  </div>
+</template>

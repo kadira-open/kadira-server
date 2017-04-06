@@ -1,0 +1,11 @@
+<template name="account.billing.timechartWrapper">
+  <h4 class="hosts-count-chart-title">{{state$appName}}</h4>
+  {{>
+    render component="timeChart"
+    type="spline"
+    color=null
+    yAxisTitle=state$yAxisTitle
+    seriesFn=stateFn$dataSeries
+    plotLinesFn=stateFn$plotLines
+  }}
+</template>

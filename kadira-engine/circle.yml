@@ -1,0 +1,18 @@
+machine:
+  node:
+    version: 4.2.2
+
+dependencies:
+  cache_directories:
+    - mongodb-linux-x86_64-2.6.4
+  pre:
+    - if [[ ! -d mongodb-linux-x86_64-2.6.4 ]]; then wget http://downloads.mongodb.org/linux/mongodb-linux-x86_64-2.6.4.tgz && tar xvzf mongodb-linux-x86_64-2.6.4.tgz; fi
+    - sudo sudo service mongodb stop
+    - sudo cp mongodb-linux-x86_64-2.6.4/bin/* /usr/bin
+    - npm install -g pick-mongo-primary
+
+database:
+  override:
+    - sudo mkdir -p /data/db
+    - sudo mongod --port 27017 --replSet testing --fork --syslog
+    - mongo --port 27017 --eval "JSON.stringify(rs.initiate())"

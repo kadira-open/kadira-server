@@ -1,0 +1,49 @@
+<template name="apps">
+  <div class="row" id="apps-wrap">
+    <div class="col-md-12">
+      {{#if state$haveApps}}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            {{i18n "apps.my_apps"}} &nbsp;<a class="btn btn-primary btn-sm create-app" type="button" href="/create-app">
+              <span class="glyphicon glyphicon-plus"></span>&nbsp;{{i18n "apps.create_new"}}</a>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <div class="apps-list">
+
+            <table class="table">
+              <thead>
+                <tr><th>{{i18n "apps.app_name"}}</th><th>{{i18n "apps.created_date"}}</th><th></th></tr>
+              </thead>
+              <tbody class="app panel-body">
+                {{#each state$apps}}
+                  <tr>
+                    <td>
+                      <span class="view-app">
+                        
+                          <span class="{{#unless state$isOwner owner}}glyphicon glyphicon-user{{/unless}}"></span>
+                        
+                        <a class="view-app-link" href="{{state$appUrl _id}}">{{name}}</a>
+                      </span>
+                    </td>
+                    <td>{{prettyDate created}}</td>
+                    <td>
+                      <a class="btn btn-default btn-sm view-app-button" href="{{state$appUrl _id}}">
+                        <span class="glyphicon glyphicon-circle-arrow-right">
+                      </span>
+                      </a>
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      {{else}}
+        {{>render component="apps.create"}}
+      {{/if}}
+    </div>
+  </div>
+</template>

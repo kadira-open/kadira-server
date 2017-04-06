@@ -1,0 +1,71 @@
+<template name="debug.root">
+  <div class="kd-navs">
+    {{> render component="debug.common.navs" navs=state$navs}}
+  </div>
+
+  <div class="kd-page">
+    <!-- activities -->
+    {{#if state$isCurrentNav 'activities'}}
+      <div class="col-md-5 data-wrap" id="event-stream-wrap">
+        {{> render component="debug.eventStream"
+          eventStreamFn=stateFn$eventStream
+          currentActivityTimeFn=stateFn$currentActivityTime
+          currentTraceIdFn=stateFn$currentTraceId
+          onActivityTimeChange=action$showActivitiesAt
+          onSelectedTypesChange=action$changeSelectedEventTypes
+          onSelectEventItemForTrace=action$showEventTrace
+        }}
+      </div>
+      <div class="col-md-7 data-wrap">
+        <div id="client-activity-wrap">
+          <div>
+            {{#if state$offlineSession}}
+              <label class="pull-right btn btn-xs btn-offline">Saved Session</label>
+            {{else}}
+              {{#if state$currentActivityTime}}
+                <button id="back-to-live-activities" class="pull-right btn btn-xs btn-default">Back To Live</button>
+              {{else}}
+                <label class="pull-right btn btn-xs btn-live">Live</label>
+              {{/if}}
+            {{/if}}
+          </div>
+
+          <div class="kd-activity-details">
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#traces" aria-controls="traces" role="tab" data-toggle="tab">Traces</a>
+              </li>
+            </ul>
+
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="traces">
+                {{> render component="debug.eventTrace"
+                  hasTrace=state$hasTrace
+                  traceFn=stateFn$trace
+                  typeFn=stateFn$type
+                  isLoadingFn=stateFn$isTraceLoading
+                  sampleMessages=state$sampleMessages
+                  onToggleEventStreamMode=action$toggleEventStream
+                }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+
+    <!-- timeline -->
+    {{#if state$isCurrentNav 'timeline'}}
+      {{> render component="debug.timeline"
+        sessionId=state$sessionId
+        debugStoreFn=stateFn$debugStoreInstance
+        currentUrl=state$currentUrl
+      }}
+    {{/if}}
+
+    <!-- cpu profiler -->
+    {{#if state$isCurrentNav 'cpu-profiler'}}
+      {{> render component="debug.cpuProfiler"}}
+    {{/if}}
+  </div>
+</template>

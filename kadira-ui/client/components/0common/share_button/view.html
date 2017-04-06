@@ -1,0 +1,11 @@
+<template name="shareButton">
+  <span class="button-group share-this-link {{state$className}}">
+    <span>
+      <a href="{{state$shareLink}}" class="share-this-link-caption" target="_blank">{{i18n "common.share_this"}}</a>
+    </span>
+
+    <a class="copy-button" data-clipboard-text="{{state$shareLink}}" type="button">
+      <span class="octicon octicon-clippy"></span>
+    </a>
+  </span>
+</template>

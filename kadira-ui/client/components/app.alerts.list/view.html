@@ -1,0 +1,72 @@
+<template name="app.alerts.list">
+  <div class="row alerts-dialog">
+    <div class="col-md-12">
+      <div>
+        <div>
+          <h3 class="panel-title">
+            <a class="btn btn-primary btn-sm" type="button" href="#" id="create-alert">
+              <span class="glyphicon glyphicon-plus"></span>
+              Create new
+            </a>
+          </h3>
+        </div>
+        <div>
+          <div class="alerts-list">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Alert Name</th>
+                  <th>Enabled</th>
+                  <th width="75px">&nbsp;</th>
+                  <th width="250px">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody class="panel-body">
+                {{#each state$alerts}}
+                  <tr>
+                    <td>
+                      <span class="view-alert">
+                        <a class="edit-alert" data-alert-id="{{_id}}" href="#">{{meta.name}}</a>
+                      </span>
+                    </td>
+                    <td align="center">
+                      {{#if meta.enabled}}
+                        <input type="checkbox" class="alert-toggle-enable" checked data-alert-id="{{_id}}">
+                      {{else}}
+                        <input type="checkbox" class="alert-toggle-enable" data-alert-id="{{_id}}">
+                      {{/if}}
+                    </td>
+                    <td>
+                      {{#if armedDate}}
+                        <span class="armed-status">armed</span>
+                      {{/if}}
+                    </td>
+                    <td>
+                      <a class="btn btn-default btn-sm view-alert-button edit-alert" data-alert-id="{{_id}}" href="#">
+                        <span class="glyphicon glyphicon-circle-arrow-right"></span>
+                      </a>
+                      <a href="#" data-alert-id="{{_id}}" class="btn btn-default btn-sm view-alert-button delete-alert">
+                        <span class="glyphicon glyphicon-trash"></span>
+                      </a>
+
+                      <span id="{{_id}}" class="delete-ctrl" style="display:none;">
+                        <a href="#" class="btn btn-sm btn-danger delete-alert-confirm" data-alert-id="{{_id}}">Confirm</a>
+                        <a href="#" class="btn btn-sm delete-alert-cancel">Cancel</a>
+                      </span>
+                      <span id="deleting-{{_id}}" class="delete-ctrl" style="display:none;">
+                        <span class="glyphicon glyphicon-refresh loading-icon"></span>
+                      </span>
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">{{i18n "common.close"}}</button>
+  </div>
+</template>

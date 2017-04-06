@@ -1,0 +1,10 @@
+<template name="account">
+  <div id="template-account">
+    <ul class="nav nav-pills">
+      <li id="billing" class="{{state$isActive "billing"}}"><a href="/account/billing">Billing</a></li>
+      <li id="plans" class="{{state$isActive "plans"}}"><a href="/account/plans">Plans</a></li>
+      <li id="profile" class="{{state$isActive "profile"}}"><a href="/account/profile">Profile</a></li>
+    </ul>
+    {{>render component=state$component}}
+  </div>
+</template>

@@ -1,0 +1,54 @@
+<template name="signIn">
+  <div class="text-center">
+    <div class="kadira-logo">
+        <a href="/"><img src="/images/kadira-logo-light.png" alt="logo"></a>
+    </div>
+    <div class="container">
+      <div class="col-md-4 col-md-offset-4">
+        {{#if state$isLoggedIn}}
+          <div class="alert alert-danger">You are already logged in</div>
+        {{/if}}
+        {{#if state$error}}
+        <div class="alert alert-danger">{{state$error}}</div>
+        {{/if}}
+        <div>
+          {{#if state$isSignInPage}}
+            <button class="btn" id="sign-in-with-meteor">
+              <img src="/images/sign-in-with-meteor.png">
+            </button>
+            <div class="email-option">
+              <strong class="line-thru or-sign-in">{{i18n "common.or"}}</strong>
+            </div>
+          {{/if}}
+          {{#if state$isSignUpPage}}
+            <button class="btn" id="sign-up-with-meteor">
+              <img src="/images/sign-up-with-meteor.png">
+            </button>
+            <p class="agreement"> {{{i18n "signIn.privacy_policy_links" "https://kadira.io/privacy_policy.html" "https://kadira.io/terms_and_conditions.html"}}}
+            </p>
+          {{/if}}
+        </div>
+        {{#if state$isSignInPage}}
+          <div class="sign-in-toggle"><a data-toggle="collapse" href="#sign-in-with-email">{{i18n "signIn.sign_in_with_email"}}</a></div>
+          <form class="form collapse" id="sign-in-with-email">
+            <div class="form-group">
+              <input autofocus="" name="email" type="email" class="form-control" placeholder="{{i18n 'signIn.email'}}">
+            </div>
+            <div class="form-group">
+              <input name="password" type="password" class="form-control" placeholder="{{i18n 'signIn.password'}}">
+            </div>
+
+            <p><a href="/forgot-password">{{i18n "signIn.forgot_your_password"}}</a></p>
+            <button type="submit" class="submit btn btn-block btn-default">{{i18n "signIn.sign_in"}}</button>
+          </form>
+          <hr>
+          <p class="sign-up-link">{{i18n "signIn.dont_have_a_kadira_account"}} <a href="/sign-up">{{i18n "signIn.sign_up"}}</a></p>
+        {{/if}}
+        {{#if state$isSignUpPage}}
+          <hr>
+          <p class="sign-in-link">{{i18n "signIn.already_have_a_kadira_account"}} <a href="/sign-in">{{i18n "signIn.sign_in"}}</a></p>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</template>

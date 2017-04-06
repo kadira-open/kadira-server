@@ -1,0 +1,27 @@
+<template name="upgradeNotifier">
+  <div class="modal fade upgrade-notifier" id="{{state$modalId}}" tabindex="-1" role="dialog" aria-labelledby="{{state$modalId}}Label" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="{{state$modalId}}Label">{{state$title}}</h4>
+        </div>
+          <div class="modal-body">
+            <div class="feature-preview">
+              <div class="desc">{{{state$msg}}}</div>
+              {{#if state$img}}
+                <img src="/images/{{state$img}}" class="img-responsive">
+              {{else}}
+                <br/>
+              {{/if}}
+              <a href="#" class="btn btn-sm btn-lg btn-info upgrade">Upgrade</a>
+            </div>
+            <div class="modal-footer">  
+              <button type="button" class="btn btn-sm btn-danger cancel reactive-modal-btn" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-sm btn-info upgrade reactive-modal-btn">Upgrade</button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</template>
